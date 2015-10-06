@@ -27,3 +27,10 @@ CREATE TABLE [dbo].[Registration]
     CONSTRAINT [FK_STUDENT] FOREIGN KEY ([Student]) REFERENCES [Student]([Id])
 )
 
+
+----INSERT INTO dbo.Registration ( Student, TimeStamp) VALUES ('2', GETDATE());
+--INSERT INTO dbo.Registration ( Student, TimeStamp) VALUES ( '3', GETDATE());
+--INSERT INTO dbo.Registration ( Student, TimeStamp) VALUES ( '4', GETDATE());
+--INSERT INTO dbo.Registration (Student, TimeStamp) VALUES ( '2', ('2015-10-05'));
+--INSERT INTO dbo.Registration ( Student, TimeStamp) VALUES ('3', ('2015-10-05'));
+
