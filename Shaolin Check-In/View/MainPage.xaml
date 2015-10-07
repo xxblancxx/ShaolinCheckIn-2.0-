@@ -1,11 +1,16 @@
 ﻿<Page
-    x:Class="Shaolin_Check_In.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Shaolin_Check_In"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:Shaolin_Check_In.ViewModels"
+    x:Class="Shaolin_Check_In.MainPage"
     mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModels:StartViewModel/>
+    </Page.DataContext>
 
     <Grid Background="#FF191919">
         <Grid.RowDefinitions>
@@ -14,10 +19,10 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBlock x:Name="pageTitle" Text="Shaolin Kung Fu Danmark" Style="{StaticResource HeaderTextBlockStyle}" 
-					IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" RequestedTheme="Dark"/>
+				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" RequestedTheme="Dark"/>
             <Image x:Name="image" Margin="50,0,0,0"/>
         </StackPanel>
-        <GridView x:Name="GridView" Grid.Row="1"  FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Header="Vælg Klub" RequestedTheme="Dark">
+        <GridView x:Name="GridView" Grid.Row="1"  FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Header="Vælg Klub" RequestedTheme="Dark" ItemsSource="{Binding SCommon.ClubList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VariableSizedWrapGrid  Orientation="Horizontal" />

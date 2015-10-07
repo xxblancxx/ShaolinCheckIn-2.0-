@@ -14,7 +14,7 @@ namespace Shaolin_Check_In.Common
     class WSContext
     {
         private HttpClientHandler handler;
-        public const string ServerUrl = "http://xxblancxx-001-site1.anytempurl.com/api/";
+        public const string ServerUrl = "http://xxblancxx-001-site1.atempurl.com/api/";
         public async Task<ObservableCollection<Club>> GetAllClubs()
         {
             handler = new HttpClientHandler();

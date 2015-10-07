@@ -4,5 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Shaolin_Check_In"
     RequestedTheme="Light">
+    <Application.Resources>
+        <DataTemplate x:Key="ClubAndTeamTemplate">
+            <Grid Background="#FF9D1B0D" Margin="10">
+                <TextBlock x:Name="Textblock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Center" Margin="45,40" FontFamily="Georgia" FontSize="18.667" Width="Auto" FontWeight="Normal"/>
+            </Grid>
+        </DataTemplate>
+    </Application.Resources>
 
 </Application>

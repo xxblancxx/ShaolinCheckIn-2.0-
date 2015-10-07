@@ -34,10 +34,10 @@ namespace Shaolin_Check_In.ViewModels
         public void GetAllFromDatabase()
         {
             LoadClubs();
-            LoadTeams();
-            LoadStudents();
-            LoadRegistrations();
-            LoadStudentRegistrations();
+            //LoadTeams();
+            //LoadStudents();
+            //LoadRegistrations();
+            //LoadStudentRegistrations();
         }
 
         public StartViewModel()
