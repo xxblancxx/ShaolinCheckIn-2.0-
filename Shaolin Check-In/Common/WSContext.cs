@@ -14,7 +14,7 @@ namespace Shaolin_Check_In.Common
     class WSContext
     {
         private HttpClientHandler handler;
-        public const string ServerUrl = "http://127.0.0.1:6789/api/";
+        public const string ServerUrl = "http://xxblancxx-001-site1.anytempurl.com/api/";
         public async Task<ObservableCollection<Club>> GetAllClubs()
         {
             handler = new HttpClientHandler();
@@ -104,7 +104,7 @@ namespace Shaolin_Check_In.Common
             //true if the default credentials are used; otherwise false. will use authentication credentials from the logged on user on your pc.
             using (HttpClient client = new HttpClient(handler))
             {
-                client.Timeout = TimeSpan.FromSeconds(4);
+                //client.Timeout = TimeSpan.FromSeconds(4);
                 client.BaseAddress = new Uri(ServerUrl);
                 var task = client.GetAsync("Registrations");
                 // var means the compiler will determine the explicit type of the variable, based on usage. this would give you a variable of type Client.
@@ -126,7 +126,7 @@ namespace Shaolin_Check_In.Common
             //true if the default credentials are used; otherwise false. will use authentication credentials from the logged on user on your pc.
             using (HttpClient client = new HttpClient(handler))
             {
-                client.Timeout = TimeSpan.FromSeconds(4);
+                //client.Timeout = TimeSpan.FromSeconds(4);
                 client.BaseAddress = new Uri(ServerUrl);
                 var task = client.GetAsync("StudentRegistrations");
                 // var means the compiler will determine the explicit type of the variable, based on usage. this would give you a variable of type Client.
@@ -147,7 +147,7 @@ namespace Shaolin_Check_In.Common
             //true if the default credentials are used; otherwise false. will use authentication credentials from the logged on user on your pc.
             using (HttpClient client = new HttpClient(handler))
             {
-                client.Timeout = TimeSpan.FromSeconds(4);
+                //client.Timeout = TimeSpan.FromSeconds(4);
                 client.BaseAddress = new Uri(ServerUrl);
                 var task = client.GetAsync("Registrations/" + id);
                 // var means the compiler will determine the explicit type of the variable, based on usage. this would give you a variable of type Client.
