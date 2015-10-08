@@ -14,7 +14,7 @@ namespace Shaolin_Check_In.ViewModels
     class StartViewModel : ViewModel
     {
         private RelayArgCommand<Club> _selectClubCommand;
-        private int tries;
+
         private bool msgdialogShown;
         public RelayArgCommand<Club> SelectClubCommand
         {
@@ -33,21 +33,25 @@ namespace Shaolin_Check_In.ViewModels
 
         public void GetAllFromDatabase()
         {
-            LoadClubs();
-            LoadTeams();
-            LoadStudents();
-            LoadRegistrations();
-            LoadStudentRegistrations();
+            if (!SCommon.AlreadyLoaded)
+            {
+                LoadClubs();
+                LoadTeams();
+                LoadStudents();
+                LoadRegistrations();
+                LoadStudentRegistrations();
+                SCommon.AlreadyLoaded = true;
+            }
+
         }
 
         public StartViewModel()
         {
-            tries = new int();
             msgdialogShown = false;
             GetAllFromDatabase();
         }
         private async void LoadClubs()
-        {
+        { // Load clubs from DB into Singleton
             try
             {
                 SCommon.ClubList = await WsContext.GetAllClubs();
@@ -60,26 +64,11 @@ namespace Shaolin_Check_In.ViewModels
                 }
 
             }
-            catch (TaskCanceledException)
-            {
-                if (tries >= 2)
-                {
-                    tries = 0;
-                    if (!msgdialogShown)
-                    {
-                        RetryConnectionDialog();
-                    }
-                }
-                else
-                {
-                    tries++;
-                    GetAllFromDatabase();
-                }
-            }
+            catch (OperationCanceledException) { }
 
         }
         private async void LoadTeams()
-        {
+        { // Load teams from DB into Singleton
             try
             {
                 SCommon.TeamList = await WsContext.GetAllTeams();
@@ -91,26 +80,12 @@ namespace Shaolin_Check_In.ViewModels
                     RetryConnectionDialog();
                 }
             }
-            catch (TaskCanceledException)
-            {
-                if (tries >= 2)
-                {
-                    tries = 0;
-                    if (!msgdialogShown)
-                    {
-                        RetryConnectionDialog();
-                    }
-                }
-                else
-                {
-                    tries++;
-                    GetAllFromDatabase();
-                }
-            }
+            catch (OperationCanceledException) { }
+
 
         }
         private async void LoadStudents()
-        {
+        { // Load students from DB into Singleton
             try
             {
                 SCommon.StudentList = await WsContext.GetAllStudents();
@@ -122,27 +97,12 @@ namespace Shaolin_Check_In.ViewModels
                     RetryConnectionDialog();
                 }
             }
-            catch (TaskCanceledException)
-            {
-                if (tries >= 2)
-                {
-                    tries = 0;
-                    if (!msgdialogShown)
-                    {
-                        RetryConnectionDialog();
-                    }
-                }
-                else
-                {
-                    tries++;
-                    GetAllFromDatabase();
-                }
-            }
+            catch (OperationCanceledException) { }
 
         }
 
         private async void LoadRegistrations()
-        {
+        { // Load all Registrations from DB into Singleton
             try
             {
                 SCommon.RegistrationList = await WsContext.GetAllRegistrations();
@@ -154,25 +114,10 @@ namespace Shaolin_Check_In.ViewModels
                     RetryConnectionDialog();
                 }
             }
-            catch (TaskCanceledException)
-            {
-                if (tries >= 2)
-                {
-                    tries = 0;
-                    if (!msgdialogShown)
-                    {
-                        RetryConnectionDialog();
-                    }
-                }
-                else
-                {
-                    tries++;
-                    GetAllFromDatabase();
-                }
-            }
+            catch (OperationCanceledException) { }
         }
         private async void LoadStudentRegistrations()
-        {
+        { // Load User registrations from View, into singleton.
             try
             {
                 SCommon.StudentRegistrationList = await WsContext.GetAllStudentRegistrations();
@@ -184,28 +129,14 @@ namespace Shaolin_Check_In.ViewModels
                     RetryConnectionDialog();
                 }
             }
-            catch (TaskCanceledException)
-            {
-                if (tries >= 2)
-                {
-                    tries = 0;
-                    if (!msgdialogShown)
-                    {
-                        RetryConnectionDialog();
-                    }
-                }
-                else
-                {
-                    tries++;
-                    GetAllFromDatabase();
-                }
-            }
+            catch (OperationCanceledException) { }
 
         }
 
         public void RetryLoadCommand(IUICommand command)
         {
             msgdialogShown = false;
+            WsContext.CancelToken.Cancel();
             GetAllFromDatabase();
         }
 
@@ -217,7 +148,7 @@ namespace Shaolin_Check_In.ViewModels
         public async void RetryConnectionDialog()
         {
             msgdialogShown = true;
-            MessageDialog msgdialog = new MessageDialog("Kunne ikke forbinde til internettet, luk programmet, eller prøv igen.");
+            MessageDialog msgdialog = new MessageDialog("Der opstod en fejl med forbindelsen");
             UICommand retryButton = new UICommand("Prøv Igen");
             retryButton.Invoked = RetryLoadCommand;
             msgdialog.Commands.Add(retryButton);

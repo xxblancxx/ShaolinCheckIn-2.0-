@@ -32,6 +32,10 @@ namespace Shaolin_Check_In.Model
                 {
                     return ConvertImg();
                 }
+                if (Image == null)
+                {
+                    return new BitmapImage(new Uri("ms-appx://Assets/Images/back.png"));
+                }
                 return null;
             }
             private set { _profilePicture = value; }

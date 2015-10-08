@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Shaolin_Check_In.ViewModels
 {
@@ -43,57 +44,50 @@ namespace Shaolin_Check_In.ViewModels
         }
         public async override void SetSelectedObject(object obj)
         {
-            // stuff happens, and Andi is a huge throbbing Cawk
             SelectedStudent = (Student)obj;
             //   SCommon.SelectedStudent = student;
             var alreadyRegisteredList = new List<Registration>();
-            try
+
+            foreach (var reg in SCommon.RegistrationList)
             {
-                foreach (var reg in SCommon.RegistrationList)
+                if (reg.Student.Equals(SelectedStudent.Id) && reg.TimeStamp.Date.Equals(DateTime.Today))
                 {
-                    if (reg.Student.Equals(SelectedStudent.Id) && reg.TimeStamp.Date.Equals(DateTime.Today))
-                    {
-                        alreadyRegisteredList.Add(reg);
-                    }
+                    alreadyRegisteredList.Add(reg);
                 }
-                if (alreadyRegisteredList.Count.Equals(0))
+            }
+            if (alreadyRegisteredList.Count.Equals(0))
+            {
+                MsgDialog = new MessageDialog("Vælg handling nedenunder", "Hej " + SelectedStudent.Name);
+
+                //Register button
+                UICommand rgButton = new UICommand("Mød Ind");
+                rgButton.Invoked = ClickrgButton;
+                MsgDialog.Commands.Add(rgButton);
+
+                if (SelectedStudent.Image == null)
                 {
-                    MsgDialog = new MessageDialog("Vælg handling nedenunder", "Hej " + SelectedStudent.Name);
-
-                    //Register button
-                    UICommand rgButton = new UICommand("Mød Ind");
-                    rgButton.Invoked = ClickrgButton;
-                    MsgDialog.Commands.Add(rgButton);
-
-                    //Cancel button
-                    UICommand cancelButton = new UICommand("Annuller");
-                    cancelButton.Invoked = ClickcancelButton;
-                    MsgDialog.Commands.Add(cancelButton);
-
-                    if (SelectedStudent.Image == null)
-                    {
-                        UICommand pictureButton = new UICommand("Tilføj Billede");
-                        pictureButton.Invoked = ClickcancelButton; //ClickPictureButton;
-                        MsgDialog.Commands.Add(pictureButton);
-                    }
-
-                    await MsgDialog.ShowAsync();
-                }
-                else
-                {
-                    MsgDialog = new MessageDialog("Du er allerede registreret, god træning!",
-                        "Hej " + SelectedStudent.Name);
-                    await MsgDialog.ShowAsync();
+                    UICommand pictureButton = new UICommand("Tilføj Billede");
+                    pictureButton.Invoked = ClickcancelButton; //ClickPictureButton;
+                    MsgDialog.Commands.Add(pictureButton);
                 }
 
-            }
-            catch (TaskCanceledException)
-            {
+                //Cancel button
+                UICommand cancelButton = new UICommand("Annuller");
+                cancelButton.Invoked = ClickcancelButton;
+                MsgDialog.Commands.Add(cancelButton);
 
+
+
+                await MsgDialog.ShowAsync();
             }
-            catch (HttpRequestException)
+            else
             {
+                MsgDialog = new MessageDialog("Du er allerede registreret, god træning!",
+                    "Hej " + SelectedStudent.Name);
+                await MsgDialog.ShowAsync();
             }
+
+
         }
         private void ClickcancelButton(IUICommand command)
         {

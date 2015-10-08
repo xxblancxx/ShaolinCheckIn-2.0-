@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 
@@ -15,6 +16,7 @@ namespace Shaolin_Check_In.Common
     {
         private HttpClientHandler handler;
         public const string ServerUrl = "http://xxblancxx-001-site1.atempurl.com/api/";
+        public CancellationTokenSource CancelToken = new CancellationTokenSource();
         public async Task<ObservableCollection<Club>> GetAllClubs()
         {
             handler = new HttpClientHandler();
@@ -29,7 +31,7 @@ namespace Shaolin_Check_In.Common
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
                 // check for response code (if response is not 200 throw exception)
-                ObservableCollection<Club> clublist = await response.Content.ReadAsAsync<ObservableCollection<Club>>();
+                ObservableCollection<Club> clublist = await response.Content.ReadAsAsync<ObservableCollection<Club>>(CancelToken.Token);
                 // var will give you a variable of type IEnumerable.
                 return clublist;
             }
@@ -50,7 +52,7 @@ namespace Shaolin_Check_In.Common
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
                 // check for response code (if response is not 200 throw exception)
-                var teamlist = await response.Content.ReadAsAsync<ObservableCollection<Team>>();
+                var teamlist = await response.Content.ReadAsAsync<ObservableCollection<Team>>(CancelToken.Token);
                 // var will give you a variable of type IEnumerable.
                 return teamlist;
             }
@@ -70,7 +72,7 @@ namespace Shaolin_Check_In.Common
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
                 // check for response code (if response is not 200 throw exception)
-                var studentlist = await response.Content.ReadAsAsync<ObservableCollection<Student>>();
+                var studentlist = await response.Content.ReadAsAsync<ObservableCollection<Student>>(CancelToken.Token);
                 // var will give you a variable of type IEnumerable.
                 return studentlist;
             }
@@ -111,7 +113,7 @@ namespace Shaolin_Check_In.Common
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
                 // check for response code (if response is not 200 throw exception)
-                var registrationlist = await response.Content.ReadAsAsync<ObservableCollection<Registration>>();
+                var registrationlist = await response.Content.ReadAsAsync<ObservableCollection<Registration>>(CancelToken.Token);
                 // var will give you a variable of type IEnumerable.
                 return registrationlist;
             }
@@ -133,7 +135,7 @@ namespace Shaolin_Check_In.Common
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
                 // check for response code (if response is not 200 throw exception)
-                var registrationlist = await response.Content.ReadAsAsync<ObservableCollection<StudentRegistration>>();
+                var registrationlist = await response.Content.ReadAsAsync<ObservableCollection<StudentRegistration>>(CancelToken.Token);
                 // var will give you a variable of type IEnumerable.
                 return registrationlist;
             }
@@ -154,7 +156,7 @@ namespace Shaolin_Check_In.Common
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
                 // check for response code (if response is not 200 throw exception)
-                var registrationlist = await response.Content.ReadAsAsync<ObservableCollection<Registration>>();
+                var registrationlist = await response.Content.ReadAsAsync<ObservableCollection<Registration>>(CancelToken.Token);
                 // var will give you a variable of type IEnumerable.
                 return registrationlist;
             }
@@ -171,7 +173,7 @@ namespace Shaolin_Check_In.Common
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    var response = await client.PostAsJsonAsync("Registrations", registration);
+                    var response = await client.PostAsJsonAsync("Registrations", registration, CancelToken.Token);
                 }
                 catch (Exception ex)
                 {
@@ -180,6 +182,7 @@ namespace Shaolin_Check_In.Common
 
             }
         }
+
 
     }
 }

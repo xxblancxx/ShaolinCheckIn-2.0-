@@ -20,6 +20,8 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<StudentRegistration> _studentRegistrationList;
         private ObservableCollection<Registration> _registrationList;
 
+        public bool AlreadyLoaded { get; set; }
+
         public Club SelectedClub { get; set; }
         public Team SelectedTeam { get; set; }
 
