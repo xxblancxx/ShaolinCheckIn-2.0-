@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:Shaolin_Check_In.ViewModels"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="Shaolin_Check_In.View.StudentPage"
     mc:Ignorable="d">
 
@@ -21,7 +22,7 @@
             <TextBlock x:Name="pageTitle" Text="{Binding SCommon.SelectedTeam.Name}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
 				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="50,0,30,40" RequestedTheme="Dark"/>
         </StackPanel>
-        <GridView x:Name="GridView" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Auto" Header="" >
+        <GridView x:Name="GridView" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Auto" Header="" ItemsSource="{Binding StudentList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}" >
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VariableSizedWrapGrid  MaximumRowsOrColumns="3" Orientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Auto" />
@@ -30,6 +31,12 @@
             <GridView.ItemContainerTransitions>
                 <TransitionCollection/>
             </GridView.ItemContainerTransitions>
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="SelectionChanged">
+                    <Core:InvokeCommandAction Command="{Binding SelectStudentCommand, Mode=OneWay}" CommandParameter="Binding SelectedItem, ElementName=GridView"/>
+                    <Core:ChangePropertyAction PropertyName="SelectedItem"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
         </GridView>
     </Grid>
 </Page>

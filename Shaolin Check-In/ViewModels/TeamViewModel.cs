@@ -31,7 +31,7 @@ namespace Shaolin_Check_In.ViewModels
             {
                 if (t.Club.Equals(SCommon.SelectedClub.Id))
                 {
-                    TeamList.Add(t);
+                   TeamList.Add(t);
                 }
             }
         }

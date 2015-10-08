@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:Shaolin_Check_In.ViewModels"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="Shaolin_Check_In.View.TeamPage"
     mc:Ignorable="d">
     <Page.DataContext>
@@ -20,12 +21,18 @@
             <TextBlock x:Name="pageTitle" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
 				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="50,0,30,40" RequestedTheme="Dark" Text="{Binding SCommon.SelectedClub.Name}"/>
         </StackPanel>
-        <GridView x:Name="GridView" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="23"  Header="Vælg Hold" RequestedTheme="Dark" ItemsSource="{Binding SCommon.TeamList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}">
+        <GridView x:Name="GridView" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="23"  Header="Vælg Hold" RequestedTheme="Dark" ItemsSource="{Binding TeamList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VariableSizedWrapGrid  Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="SelectionChanged">
+                    <Core:InvokeCommandAction Command="{Binding SelectTeamCommand, Mode=OneWay}" CommandParameter="{Binding SelectedItem, ElementName=GridView}"/>
+                    <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.StudentPage"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
         </GridView>
     </Grid>
 </Page>

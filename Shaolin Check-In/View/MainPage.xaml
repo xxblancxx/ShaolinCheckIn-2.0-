@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:Shaolin_Check_In.ViewModels"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="Shaolin_Check_In.MainPage"
     mc:Ignorable="d">
 
@@ -28,6 +29,12 @@
                     <VariableSizedWrapGrid  Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="SelectionChanged">
+                    <Core:InvokeCommandAction Command="{Binding SelectClubCommand}" CommandParameter="{Binding SelectedItem, ElementName=GridView}"/>
+                    <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.TeamPage"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
         </GridView>
     </Grid>
 </Page>
