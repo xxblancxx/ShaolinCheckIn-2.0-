@@ -6,7 +6,7 @@
     RequestedTheme="Light">
     <Application.Resources>
         <DataTemplate x:Key="ClubAndTeamTemplate">
-            <Grid Margin="5" Background="#FF9D1B0D" Width="200" Height="90">
+            <Grid Margin="5" Background="#FF9D1B0D" Width="200" Height="90" MinWidth="100" MinHeight="45">
                 <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Foreground="White" SelectionHighlightColor="#FFB81908" FontFamily="Footlight MT Light" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>

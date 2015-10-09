@@ -26,5 +26,27 @@ namespace Shaolin_Check_In
         {
             this.InitializeComponent();
         }
+
+
+
+        // Show commandbar
+        //or close, depending on current state
+        private void CommandBarClick(object sender, RoutedEventArgs e)
+        {
+            var rt = new RotateTransform();
+
+            if (commandBar.Visibility == Visibility.Collapsed)
+            {
+                commandBar.Visibility = Visibility.Visible;
+                rt.Angle = -90;
+                commandBarActivationButton.RenderTransform = rt;
+            }
+            else if(commandBar.Visibility == Visibility.Visible)
+            {
+                commandBar.Visibility = Visibility.Collapsed;
+                rt.Angle = 90;
+                commandBarActivationButton.RenderTransform = rt;
+            }
+        }
     }
 }
