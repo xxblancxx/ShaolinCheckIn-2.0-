@@ -16,5 +16,14 @@ namespace Shaolin_Check_In.Model
 
         public DateTime TimeStamp { get; set; }
 
+        public string Date
+        {
+            get
+            {
+                return TimeStamp.ToString("dd-MM-yy");
+            }
+            set { }
+        }
+
     }
 }
