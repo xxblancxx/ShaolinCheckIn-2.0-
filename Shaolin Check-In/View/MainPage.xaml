@@ -18,15 +18,23 @@
             <RowDefinition Height="11*"/>
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="pageTitle" Text="Shaolin Kung Fu Danmark" Style="{StaticResource HeaderTextBlockStyle}" 
-				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" RequestedTheme="Dark"/>
-            <Image x:Name="image" Margin="50,0,0,0"/>
-        </StackPanel>
+
+        <Viewbox HorizontalAlignment="Left">
+            <Grid HorizontalAlignment="Left" Margin="50,0,0,0">
+                <StackPanel Margin="0,0,50,0" Orientation="Horizontal">
+
+                    <TextBlock x:Name="pageTitle" Text="Shaolin Kung Fu Danmark" FontFamily="Footlight MT Light" 
+            			IsHitTestVisible="false" TextWrapping="Wrap"  RequestedTheme="Dark" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,29,0,29.667" MinWidth="400" />
+                    <Image HorizontalAlignment="Left" x:Name="image" Source="ms-appx:///Assets/ShaolinLogo.PNG" Margin="50,0,0,-0.333"/>
+                </StackPanel>
+
+            </Grid>
+        </Viewbox>
+
         <GridView x:Name="GridView" Grid.Row="1"  FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Header="Vælg Klub" RequestedTheme="Dark" ItemsSource="{Binding SCommon.ClubList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid  Orientation="Horizontal" />
+                    <VariableSizedWrapGrid  Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <Interactivity:Interaction.Behaviors>

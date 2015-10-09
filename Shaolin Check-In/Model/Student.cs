@@ -34,7 +34,7 @@ namespace Shaolin_Check_In.Model
                 }
                 if (Image == null)
                 {
-                    return new BitmapImage(new Uri("ms-appx://Assets/Images/back.png"));
+                    return new BitmapImage(new Uri("ms-appx:///Assets/NoAvatar.png"));
                 }
                 return null;
             }
