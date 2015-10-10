@@ -51,7 +51,7 @@
                       ScrollViewer.VerticalScrollMode="Disabled">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid  MaximumRowsOrColumns="3" Orientation="Vertical" VerticalAlignment="Stretch"  />
+                    <VariableSizedWrapGrid  MaximumRowsOrColumns="5" Orientation="Vertical" VerticalAlignment="Stretch"  />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemContainerTransitions>

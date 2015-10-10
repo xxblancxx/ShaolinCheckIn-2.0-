@@ -34,13 +34,25 @@ namespace Shaolin_Check_In.ViewModels
         public void GetAllFromDatabase()
         {
             if (!SCommon.AlreadyLoaded)
-            {
-                LoadClubs();
-                LoadTeams();
-                LoadStudents();
-                LoadRegistrations();
-                LoadStudentRegistrations();
-                SCommon.AlreadyLoaded = true;
+            { // Loads Objects from DB on startup. Sets AlreadyLoaded to true if no exceptions happen, so it only happens once automatically.
+                try
+                {
+                    SCommon.LoadClubs();
+                    SCommon.LoadTeams();
+                    SCommon.LoadStudents();
+                    SCommon.LoadRegistrations();
+                    SCommon.LoadStudentRegistrations();
+                    SCommon.AlreadyLoaded = true;
+                }
+                catch (HttpRequestException)
+                { // If no internetconnection, HTTPRequests returns exception
+                    if (!msgdialogShown)
+                    {
+                        RetryConnectionDialog();
+                    }
+
+                } // Upon cancellationToken.Cancel - Should not crash. Do nothing though.
+                catch (OperationCanceledException) { }
             }
 
         }
@@ -50,101 +62,9 @@ namespace Shaolin_Check_In.ViewModels
             msgdialogShown = false;
             GetAllFromDatabase();
         }
-        private async void LoadClubs()
-        { // Load clubs from DB into Singleton
-            try
-            {
-                SCommon.ClubList = await WsContext.GetAllClubs();
-            }
-            catch (HttpRequestException)
-            {
-                if (!msgdialogShown)
-                {
-                    RetryConnectionDialog();
-                }
 
-            }
-            catch (OperationCanceledException) { }
-
-        }
-        private async void LoadTeams()
-        { // Load teams from DB into Singleton
-            try
-            {
-                SCommon.TeamList = await WsContext.GetAllTeams();
-            }
-            catch (HttpRequestException)
-            {
-                if (!msgdialogShown)
-                {
-                    RetryConnectionDialog();
-                }
-            }
-            catch (OperationCanceledException) { }
-
-
-        }
-        private async void LoadStudents()
-        { // Load students from DB into Singleton
-            try
-            {
-                SCommon.StudentList = await WsContext.GetAllStudents();
-            }
-            catch (HttpRequestException)
-            {
-                if (!msgdialogShown)
-                {
-                    RetryConnectionDialog();
-                }
-            }
-            catch (OperationCanceledException) { }
-
-        }
-
-        private async void LoadRegistrations()
-        { // Load all Registrations from DB into Singleton
-            try
-            {
-                SCommon.RegistrationList = await WsContext.GetAllRegistrations();
-            }
-            catch (HttpRequestException)
-            {
-                if (!msgdialogShown)
-                {
-                    RetryConnectionDialog();
-                }
-            }
-            catch (OperationCanceledException) { }
-        }
-        private async void LoadStudentRegistrations()
-        { // Load User registrations from View, into singleton.
-            try
-            {
-                SCommon.StudentRegistrationList = await WsContext.GetAllStudentRegistrations();
-            }
-            catch (HttpRequestException)
-            {
-                if (!msgdialogShown)
-                {
-                    RetryConnectionDialog();
-                }
-            }
-            catch (OperationCanceledException) { }
-
-        }
-
-        public void RetryLoadCommand(IUICommand command)
-        {
-            msgdialogShown = false;
-            WsContext.CancelToken.Cancel();
-            GetAllFromDatabase();
-        }
-
-        public void CloseApplicationCommand(IUICommand command)
-        {
-            Application.Current.Exit();
-        }
-
+        #region MsgDialog
+        // If no internetconnection, this dialog gives option of trying again (if slow) or closing application
         public async void RetryConnectionDialog()
         {
             msgdialogShown = true;
@@ -156,7 +76,24 @@ namespace Shaolin_Check_In.ViewModels
             closeButton.Invoked = CloseApplicationCommand;
             msgdialog.Commands.Add(closeButton);
             await msgdialog.ShowAsync();
+        } 
+        #endregion
+
+        #region Commands in MsgDialog
+        public void RetryLoadCommand(IUICommand command)
+        {
+            msgdialogShown = false;
+            WsContext.CancelToken.Cancel();
+            GetAllFromDatabase();
         }
+
+        public void CloseApplicationCommand(IUICommand command)
+        {
+            Application.Current.Exit();
+        }
+        #endregion
+
+
 
     }
 }

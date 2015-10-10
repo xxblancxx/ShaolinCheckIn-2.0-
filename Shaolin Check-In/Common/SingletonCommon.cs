@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,12 +20,16 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<Student> _studentList;
         private ObservableCollection<StudentRegistration> _studentRegistrationList;
         private ObservableCollection<Registration> _registrationList;
+        private WSContext WsContext = new WSContext();
 
+        //Bool to see if all main gets from db already happened on Startup.
         public bool AlreadyLoaded { get; set; }
 
+        //These "Selected" properties, hold the lastly chosen one in next page.
         public Club SelectedClub { get; set; }
         public Team SelectedTeam { get; set; }
 
+        //Current list of Registrations in Database
         public ObservableCollection<Registration> RegistrationList
         {
             get { return _registrationList; }
@@ -36,6 +41,7 @@ namespace Shaolin_Check_In.Common
             }
         }
 
+        //Current list of StudentRegistrations (Id, Name, Timestamp)
         public ObservableCollection<StudentRegistration> StudentRegistrationList
         {
             get { return _studentRegistrationList; }
@@ -47,7 +53,7 @@ namespace Shaolin_Check_In.Common
             }
         }
 
-        // public Student SelectedStudent { get; set; }
+        //Current list of Clubs
         public ObservableCollection<Club> ClubList
         {
             get { return _clubList; }
@@ -59,6 +65,7 @@ namespace Shaolin_Check_In.Common
             }
         }
 
+        //Current list of Teams
         public ObservableCollection<Team> TeamList
         {
             get { return _teamList; }
@@ -70,6 +77,7 @@ namespace Shaolin_Check_In.Common
             }
         }
 
+        //Current list of Students
         public ObservableCollection<Student> StudentList
         {
             get { return _studentList; }
@@ -92,13 +100,42 @@ namespace Shaolin_Check_In.Common
         //private Constructor, only Instance can initialize.
         private SingletonCommon() { }
 
+        
+
+        #region LoadFromDB Methods
+        public async void LoadClubs()
+        { // Load clubs from DB into Singleton
+            ClubList = await WsContext.GetAllClubs();
+        }
+        public async void LoadTeams()
+        { // Load teams from DB into Singleton
+            TeamList = await WsContext.GetAllTeams();
+        }
+        public async void LoadStudents()
+        { // Load students from DB into Singleton
+            StudentList = await WsContext.GetAllStudents();
+        }
+
+        public async void LoadRegistrations()
+        { // Load all Registrations from DB into Singleton
+            RegistrationList = await WsContext.GetAllRegistrations();
+        }
+        public async void LoadStudentRegistrations()
+        { // Load User registrations from View, into singleton.
+            StudentRegistrationList = await WsContext.GetAllStudentRegistrations();            
+        }
+        #endregion
+
+        #region OnPropertyChanged Handlers
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
+        } 
+        #endregion
+
     }
 }
 

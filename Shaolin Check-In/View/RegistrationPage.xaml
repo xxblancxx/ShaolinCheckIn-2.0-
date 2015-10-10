@@ -63,7 +63,7 @@
         <GridView Grid.Row="1" ItemsSource="{Binding LocalStudentRegistrations}" ItemTemplate="{StaticResource StudentRegistrationGridviewDatatemplate}" SelectionMode="None" >
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid  MaximumRowsOrColumns="3" Orientation="Horizontal"  HorizontalAlignment="Center" />
+                    <VariableSizedWrapGrid  MaximumRowsOrColumns="6" Orientation="Horizontal"  HorizontalAlignment="Center" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
