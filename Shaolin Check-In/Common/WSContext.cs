@@ -183,6 +183,30 @@ namespace Shaolin_Check_In.Common
             }
         }
 
+        #region LoadFromDB Methods
+        public async void LoadClubs()
+        { // Load clubs from DB into Singleton
+            SingletonCommon.Instance.ClubList = await GetAllClubs();
+        }
+        public async void LoadTeams()
+        { // Load teams from DB into Singleton
+            SingletonCommon.Instance.TeamList = await GetAllTeams();
+        }
+        public async void LoadStudents()
+        { // Load students from DB into Singleton
+            SingletonCommon.Instance.StudentList = await GetAllStudents();
+        }
+
+        public async void LoadRegistrations()
+        { // Load all Registrations from DB into Singleton
+            SingletonCommon.Instance.RegistrationList = await GetAllRegistrations();
+        }
+        public async void LoadStudentRegistrations()
+        { // Load User registrations from View, into singleton.
+            SingletonCommon.Instance.StudentRegistrationList = await GetAllStudentRegistrations();
+        }
+        #endregion
+
 
     }
 }

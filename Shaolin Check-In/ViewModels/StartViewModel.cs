@@ -37,11 +37,11 @@ namespace Shaolin_Check_In.ViewModels
             { // Loads Objects from DB on startup. Sets AlreadyLoaded to true if no exceptions happen, so it only happens once automatically.
                 try
                 {
-                    SCommon.LoadClubs();
-                    SCommon.LoadTeams();
-                    SCommon.LoadStudents();
-                    SCommon.LoadRegistrations();
-                    SCommon.LoadStudentRegistrations();
+                    WsContext.LoadClubs();
+                    WsContext.LoadTeams();
+                    WsContext.LoadStudents();
+                    WsContext.LoadRegistrations();
+                    WsContext.LoadStudentRegistrations();
                     SCommon.AlreadyLoaded = true;
                 }
                 catch (HttpRequestException)
