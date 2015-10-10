@@ -15,9 +15,23 @@ namespace Shaolin_Check_In.ViewModels
     class StudentViewModel : ViewModel
     {
         private RelayArgCommand<Student> _selectStudentCommand;
+        private ObservableCollection<Student> _studentList;
         public Student SelectedStudent { get; set; }
 
-        public ObservableCollection<Student> StudentList { get; set; }
+        public ObservableCollection<Student> StudentList
+        {
+            get
+            {
+                // Set private var to list, to use orderby (sorting) and creates new Observablecollection for viewing.
+                _studentList = new ObservableCollection<Student>(_studentList.OrderBy(s => s.Name));
+                return _studentList;
+            }
+            set
+            {
+                if (Equals(value, _studentList)) return;
+                _studentList = value;
+            }
+        }
 
 
         public RelayArgCommand<Student> SelectStudentCommand
