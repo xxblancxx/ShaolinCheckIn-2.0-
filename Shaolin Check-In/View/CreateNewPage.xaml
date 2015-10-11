@@ -7,6 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="ButtonTemplate">
+            <Grid Margin="5" Background="#FF9D1B0D" Width="200" Height="90" MinWidth="100" MinHeight="45">
+                <TextBlock TextWrapping="Wrap" Text="{Binding Content}" Foreground="White" SelectionHighlightColor="#FFB81908" FontFamily="Footlight MT Light" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+
 
     <Grid Background="#FF191919">
         <Grid.RowDefinitions>
@@ -34,6 +43,39 @@
 					IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" Margin="0,20,30,20" RequestedTheme="Dark"/>
             </Grid>
         </Viewbox>
-
+        <GridView x:Name="GridView" Grid.Row="1"  FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" RequestedTheme="Dark" ItemTemplate="{StaticResource ButtonTemplate}">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VariableSizedWrapGrid  Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="SelectionChanged">
+                    <Core:InvokeCommandAction Command="{Binding SelectClubCommand}" CommandParameter="{Binding SelectedItem, ElementName=GridView}"/>
+                    <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.TeamPage"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+            <Button x:Name="NewClubButton" Content="Tilføj Klub" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Click">
+                        <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.NewClubPage"/>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Button>
+            <Button x:Name="NewTeamButton" Content="Nyt Hold" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Click">
+                        <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.NewTeamPage"/>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Button>
+            <Button x:Name="NewStudentButton" Content="Nyt Medlem" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Click">
+                        <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.NewStudentPage"/>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Button>
+        </GridView>
     </Grid>
 </Page>

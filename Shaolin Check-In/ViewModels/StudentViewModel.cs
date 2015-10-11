@@ -22,7 +22,7 @@ namespace Shaolin_Check_In.ViewModels
         {
             get
             {
-                // Set private var to list, to use orderby (sorting) and creates new Observablecollection for viewing.
+               //On Get; Return Collection in Alphabetical order
                 _studentList = new ObservableCollection<Student>(_studentList.OrderBy(s => s.Name));
                 return _studentList;
             }

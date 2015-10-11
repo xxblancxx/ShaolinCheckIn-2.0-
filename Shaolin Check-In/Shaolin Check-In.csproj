@@ -120,6 +120,15 @@
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="View\NewClubPage.xaml.cs">
+      <DependentUpon>NewClubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewStudentPage.xaml.cs">
+      <DependentUpon>NewStudentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewTeamPage.xaml.cs">
+      <DependentUpon>NewTeamPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
@@ -160,6 +169,18 @@
     <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\NewClubPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewStudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewTeamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegistrationPage.xaml">
       <SubType>Designer</SubType>
