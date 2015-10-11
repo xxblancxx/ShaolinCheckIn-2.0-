@@ -22,7 +22,7 @@ namespace Shaolin_Check_In.ViewModels
         {
             get
             {
-               //On Get; Return Collection in Alphabetical order
+                //On Get; Return Collection in Alphabetical order
                 _studentList = new ObservableCollection<Student>(_studentList.OrderBy(s => s.Name));
                 return _studentList;
             }
@@ -107,14 +107,15 @@ namespace Shaolin_Check_In.ViewModels
         {
             //cancel, nothing happens.
         }
-        private void ClickrgButton(IUICommand command)
+        private async void ClickrgButton(IUICommand command)
         {
             // Register the student
 
             if (SelectedStudent != null)
             {
                 var st = new Registration(SelectedStudent.Id);
-                WsContext.CreateRegistration(st);
+                await WsContext.CreateRegistration(st);
+                WsContext.LoadStudentRegistrations();
                 SCommon.RegistrationList.Add(st);
             }
         }
