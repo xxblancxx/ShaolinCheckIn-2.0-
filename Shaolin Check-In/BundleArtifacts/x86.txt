@@ -1,0 +1,1 @@
+MainPackage=C:\Users\martin\documents\visual studio 2015\Projects\Shaolin Check-In\Shaolin Check-In\bin\x86\Debug\Shaolin Check-In_1.0.1.0_x86_Debug.appx
