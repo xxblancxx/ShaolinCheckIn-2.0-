@@ -3,11 +3,14 @@ using Shaolin_Check_In.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Shaolin_Check_In.ViewModels
@@ -16,6 +19,8 @@ namespace Shaolin_Check_In.ViewModels
     {
         private RelayArgCommand<Student> _selectStudentCommand;
         private ObservableCollection<Student> _studentList;
+        private IAsyncOperation<IUICommand> _asyncOp;
+        private DispatcherTimer _timer;
         public Student SelectedStudent { get; set; }
 
         public ObservableCollection<Student> StudentList
@@ -74,24 +79,15 @@ namespace Shaolin_Check_In.ViewModels
                 MsgDialog = new MessageDialog("Vælg handling nedenunder", "Hej " + SelectedStudent.Name);
 
                 //Register button
-                UICommand rgButton = new UICommand("Mød Ind");
-                rgButton.Invoked = ClickrgButton;
-                MsgDialog.Commands.Add(rgButton);
+                MsgDialog.Commands.Add(new UICommand("Mød Ind", ClickrgButton));
 
                 if (SelectedStudent.Image == null)
                 {
-                    UICommand pictureButton = new UICommand("Tilføj Billede");
-                    pictureButton.Invoked = ClickcancelButton; //ClickPictureButton;
-                    MsgDialog.Commands.Add(pictureButton);
+                    MsgDialog.Commands.Add(new UICommand("Tilføj Billede", ClickPictureButton));
                 }
 
                 //Cancel button
-                UICommand cancelButton = new UICommand("Annuller");
-                cancelButton.Invoked = ClickcancelButton;
-                MsgDialog.Commands.Add(cancelButton);
-
-
-
+                MsgDialog.Commands.Add(new UICommand("Annuller", ClickcancelButton));
                 await MsgDialog.ShowAsync();
             }
             else
@@ -102,6 +98,11 @@ namespace Shaolin_Check_In.ViewModels
             }
 
 
+        }
+
+        private void ClickPictureButton(IUICommand command)
+        {
+            // Needs implementation of Filepicker and picture.
         }
         private void ClickcancelButton(IUICommand command)
         {
@@ -115,9 +116,29 @@ namespace Shaolin_Check_In.ViewModels
             {
                 var st = new Registration(SelectedStudent.Id);
                 await WsContext.CreateRegistration(st);
+                MsgDialog = new MessageDialog("Du er hermed registreret");
                 WsContext.LoadStudentRegistrations();
                 SCommon.RegistrationList.Add(st);
+
+                try
+                {
+                    _timer = new DispatcherTimer();
+                    _timer.Tick += StopAfterTime;
+                    _timer.Interval = new TimeSpan(0, 0, 0, 1,500); 
+                    _asyncOp = MsgDialog.ShowAsync();
+                    _timer.Start();
+                }
+                catch (TaskCanceledException)
+                {
+                    //Caught
+                }
             }
+        }
+
+        private void StopAfterTime(object sender, object e)
+        {
+            _asyncOp.Cancel();
+            _timer.Start();
         }
     }
 }
