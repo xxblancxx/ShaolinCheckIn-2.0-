@@ -28,9 +28,9 @@ namespace Shaolin_Check_In.ViewModels
             }
         }
 
-        public ObservableCollection<StudentRegistration> LocalStudentRegistrations
+      public ObservableCollection<StudentRegistration> LocalStudentRegistrations
         {
-            get { return _localStudentRegistrations; }
+            get { return new ObservableCollection<StudentRegistration>(_localStudentRegistrations.Reverse()); }
             set
             {
                 if (Equals(value, _localStudentRegistrations)) return;
