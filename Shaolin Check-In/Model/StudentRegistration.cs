@@ -14,15 +14,17 @@ namespace Shaolin_Check_In.Model
 
         public string Name { get; set; }
 
-        public DateTime TimeStamp { get; set; }
+        public DateTimeOffset TimeStamp { get; set; }
 
         public string Date
         {
             get
             {
-                return TimeStamp.ToString("dd-MM-yy");
+                string returnString = TimeStamp.Date.ToString(("dd-MM-yy"));
+             //   return TimeStamp.Date.ToString("dd-MM-yy");
+                return returnString;
             }
-            set { }
+            private set { }
         }
 
     }

@@ -7,14 +7,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Shaolin_Check_In.Common;
 
 namespace Shaolin_Check_In.ViewModels
 {
     class RegistrationViewModel : ViewModel, INotifyPropertyChanged
     {
 
-        private ObservableCollection<StudentRegistration> _localStudentRegistrations;
         private string _searchText;
+      
+        private ObservableCollection<StudentRegistration> _localStudentRegistrations;
+
 
         public string SearchText
         {
@@ -28,9 +31,15 @@ namespace Shaolin_Check_In.ViewModels
             }
         }
 
-      public ObservableCollection<StudentRegistration> LocalStudentRegistrations
+        
+
+        public ObservableCollection<StudentRegistration> LocalStudentRegistrations
         {
-            get { return new ObservableCollection<StudentRegistration>(_localStudentRegistrations.Reverse()); }
+            get
+            { // OrderByDescending so newest Registration is shown first.
+                _localStudentRegistrations = new ObservableCollection<StudentRegistration>(_localStudentRegistrations.OrderByDescending(s => s.TimeStamp));
+                return _localStudentRegistrations; ;
+            }
             set
             {
                 if (Equals(value, _localStudentRegistrations)) return;
@@ -47,12 +56,13 @@ namespace Shaolin_Check_In.ViewModels
         public RegistrationViewModel()
         {
             LocalStudentRegistrations = SCommon.StudentRegistrationList;
+            //SearchDate = DateTime.Today;
         }
         public void SearchForStudentName(string name)
         { // Search List of StudentRegistrations, for specific student name.
 
             var studreg = new ObservableCollection<StudentRegistration>();
-            if (name != null)
+            if (name != "")
             {
                 foreach (var sr in SCommon.StudentRegistrationList)
                 {
@@ -67,13 +77,13 @@ namespace Shaolin_Check_In.ViewModels
             {
                 LocalStudentRegistrations = SCommon.StudentRegistrationList;
             }
-
-
         }
+
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-       
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

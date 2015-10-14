@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:Shaolin_Check_In.ViewModels"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:sys="using:System"
     x:Class="Shaolin_Check_In.View.RegistrationPage"
     mc:Ignorable="d">
     <Page.Resources>
@@ -57,7 +58,9 @@
         </Viewbox>
         <Viewbox VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0" StretchDirection="DownOnly">
             <Grid MinWidth="200" MinHeight="40" Margin="0,60,50,0">
-                <SearchBox PlaceholderText="Søg efter navn" QueryText="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RequestedTheme="Dark" Margin="0" MinWidth="148" MinHeight="32"/>
+                <StackPanel Orientation="Horizontal">
+                   <SearchBox PlaceholderText="Søg efter navn" QueryText="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RequestedTheme="Dark" Margin="0" MinWidth="148" MinHeight="32" Width="200"/>
+                </StackPanel>
             </Grid>
         </Viewbox>
         <GridView Grid.Row="1" ItemsSource="{Binding LocalStudentRegistrations}" ItemTemplate="{StaticResource StudentRegistrationGridviewDatatemplate}" SelectionMode="None" >
