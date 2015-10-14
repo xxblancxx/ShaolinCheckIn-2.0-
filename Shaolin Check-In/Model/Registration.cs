@@ -11,10 +11,10 @@ namespace Shaolin_Check_In.Model
     class Registration : INotifyPropertyChanged
     {
 
-        private DateTime _timeStamp;
+        private DateTimeOffset _timeStamp;
         public int Id { get; set; }
 
-        public DateTime TimeStamp
+        public DateTimeOffset TimeStamp
         {
             get { return _timeStamp; }
             set { _timeStamp = value; }
@@ -27,7 +27,7 @@ namespace Shaolin_Check_In.Model
 
         public Registration(int student)
         {
-            TimeStamp = DateTime.Now;
+            TimeStamp = DateTimeOffset.Now; // needs to change either here or api.
             Student = student;
         }
 

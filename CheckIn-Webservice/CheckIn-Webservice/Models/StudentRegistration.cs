@@ -25,7 +25,7 @@ namespace CheckIn_Webservice
         public int Team { get; set; }
 
         [Key]
-        [Column(Order = 3, TypeName = "date")]
-        public DateTime TimeStamp { get; set; }
+        [Column(Order = 3)]
+        public DateTimeOffset TimeStamp { get; set; }
     }
 }

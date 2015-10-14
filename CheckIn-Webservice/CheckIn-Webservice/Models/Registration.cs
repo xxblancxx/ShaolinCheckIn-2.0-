@@ -11,8 +11,7 @@ namespace CheckIn_Webservice
     {
         public int Id { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime TimeStamp { get; set; }
+        public DateTimeOffset TimeStamp { get; set; }
 
         public int Student { get; set; }
 
