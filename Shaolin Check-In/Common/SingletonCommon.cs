@@ -21,7 +21,7 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<StudentRegistration> _studentRegistrationList;
         private ObservableCollection<Registration> _registrationList;
 
-    
+        public ObservableCollection<StudentRegistration> DisplayedStudentRegistrations { get; set; }
      
         //Bool to see if all main gets from db already happened on Startup.
         public bool AlreadyLoaded { get; set; }

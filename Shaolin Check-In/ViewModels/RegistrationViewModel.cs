@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Shaolin_Check_In.Common;
 
 namespace Shaolin_Check_In.ViewModels
@@ -15,8 +16,6 @@ namespace Shaolin_Check_In.ViewModels
     {
 
         private string _searchText;
-      
-        private ObservableCollection<StudentRegistration> _localStudentRegistrations;
 
 
         public string SearchText
@@ -31,19 +30,17 @@ namespace Shaolin_Check_In.ViewModels
             }
         }
 
-        
-
         public ObservableCollection<StudentRegistration> LocalStudentRegistrations
         {
             get
             { // OrderByDescending so newest Registration is shown first.
-                _localStudentRegistrations = new ObservableCollection<StudentRegistration>(_localStudentRegistrations.OrderByDescending(s => s.TimeStamp));
-                return _localStudentRegistrations; ;
+                SCommon.DisplayedStudentRegistrations = new ObservableCollection<StudentRegistration>(SCommon.DisplayedStudentRegistrations.OrderByDescending(s => s.TimeStamp));
+                return SCommon.DisplayedStudentRegistrations; ;
             }
             set
             {
-                if (Equals(value, _localStudentRegistrations)) return;
-                _localStudentRegistrations = value;
+                if (Equals(value, SCommon.DisplayedStudentRegistrations)) return;
+                SCommon.DisplayedStudentRegistrations = value;
                 OnPropertyChanged();
             }
         }
@@ -70,8 +67,9 @@ namespace Shaolin_Check_In.ViewModels
                     {
                         studreg.Add(sr);
                     }
-                    LocalStudentRegistrations = studreg;
+
                 }
+                LocalStudentRegistrations = studreg;
             }
             else
             {
@@ -79,7 +77,34 @@ namespace Shaolin_Check_In.ViewModels
             }
         }
 
-       
+        public void SearchForDate(DateTimeOffset? date)
+        { // Sort shown StudentRegistrations by Date.
+            // TODO; View isn't updated properly ?
+            string dateString = date.ToString();
+            var studreg = new ObservableCollection<StudentRegistration>();
+           
+            if (!dateString.Contains(DateTime.Today.ToString("dd/MM/yy")))
+            {
+                if (dateString != "")
+                {
+                    foreach (var sr in SCommon.StudentRegistrationList)
+                    {
+                        string tempString = sr.TimeStamp.Date.ToString("MM/dd/yyyy");
+                        if (dateString.Contains(tempString))
+                        {
+                            studreg.Add(sr);
+                        }
+
+                    }
+                    LocalStudentRegistrations = studreg;
+                  }
+            }
+            else
+            {
+                LocalStudentRegistrations = SCommon.StudentRegistrationList;
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

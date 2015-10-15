@@ -31,6 +31,10 @@ namespace Shaolin_Check_In.View
             this.InitializeComponent();
         }
 
-       
+        private void DatePicked(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            var rv = new RegistrationViewModel();
+            rv.SearchForDate(DateChooser.Date);
+        }
     }
 }

@@ -59,7 +59,10 @@
         <Viewbox VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0" StretchDirection="DownOnly">
             <Grid MinWidth="200" MinHeight="40" Margin="0,60,50,0">
                 <StackPanel Orientation="Horizontal">
-                   <SearchBox PlaceholderText="Søg efter navn" QueryText="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RequestedTheme="Dark" Margin="0" MinWidth="148" MinHeight="32" Width="200"/>
+                    <CalendarDatePicker x:Name="DateChooser" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,10,0" DateChanged="DatePicked">
+                      
+                    </CalendarDatePicker>
+                    <SearchBox PlaceholderText="Søg efter navn" QueryText="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RequestedTheme="Dark" Margin="0" MinWidth="148" MinHeight="32" Width="200"/>
                 </StackPanel>
             </Grid>
         </Viewbox>
