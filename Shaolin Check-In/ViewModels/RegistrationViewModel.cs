@@ -79,7 +79,7 @@ namespace Shaolin_Check_In.ViewModels
 
         public void SearchForDate(DateTimeOffset? date)
         { // Sort shown StudentRegistrations by Date.
-            // TODO; View isn't updated properly ?
+           
             string dateString = date.ToString();
             var studreg = new ObservableCollection<StudentRegistration>();
            

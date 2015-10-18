@@ -24,7 +24,16 @@ namespace Shaolin_Check_In.Common
 
         public ObservableCollection<StudentRegistration> DisplayedStudentRegistrations
         {
-            get { return _displayedStudentRegistrations; }
+            get
+            {
+                if (_displayedStudentRegistrations != null)
+                {
+                      _displayedStudentRegistrations =
+                    new ObservableCollection<StudentRegistration>(_displayedStudentRegistrations.OrderByDescending(s => s.TimeStamp));
+                }
+              
+                return _displayedStudentRegistrations;
+            }
             set
             {
                 _displayedStudentRegistrations = value;
@@ -110,9 +119,9 @@ namespace Shaolin_Check_In.Common
         //private Constructor, only Instance can initialize.
         private SingletonCommon() { }
 
-        
 
-        
+
+
 
         #region OnPropertyChanged Handlers
         public event PropertyChangedEventHandler PropertyChanged;
@@ -121,7 +130,7 @@ namespace Shaolin_Check_In.Common
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        } 
+        }
         #endregion
 
     }
