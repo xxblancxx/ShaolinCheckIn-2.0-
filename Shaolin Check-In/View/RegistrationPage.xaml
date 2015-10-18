@@ -66,7 +66,7 @@
                 </StackPanel>
             </Grid>
         </Viewbox>
-        <GridView Grid.Row="1" ItemsSource="{Binding LocalStudentRegistrations}" ItemTemplate="{StaticResource StudentRegistrationGridviewDatatemplate}" SelectionMode="None" >
+        <GridView Grid.Row="1" ItemsSource="{Binding SCommon.DisplayedStudentRegistrations}" ItemTemplate="{StaticResource StudentRegistrationGridviewDatatemplate}" SelectionMode="None" >
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VariableSizedWrapGrid  MaximumRowsOrColumns="6" Orientation="Horizontal"  HorizontalAlignment="Center" />
