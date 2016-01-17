@@ -14,8 +14,9 @@ CREATE TABLE [dbo].[Team]
 CREATE TABLE [dbo].[Student]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Name] VARCHAR(50) NOT NULL,
+   	[Name] VARCHAR(50) NOT NULL,
 	[Image] VARBINARY(MAX) NULL,
+	[IsActive] BIT NOT NULL, 
 	[Team] INT NOT NULL, 
     CONSTRAINT [FK_TEAM] FOREIGN KEY ([Team]) REFERENCES [Team]([Id])
 )
@@ -28,9 +29,5 @@ CREATE TABLE [dbo].[Registration]
 )
 
 
-----INSERT INTO dbo.Registration ( Student, TimeStamp) VALUES ('2', GETDATE());
---INSERT INTO dbo.Registration ( Student, TimeStamp) VALUES ( '3', GETDATE());
---INSERT INTO dbo.Registration ( Student, TimeStamp) VALUES ( '4', GETDATE());
---INSERT INTO dbo.Registration (Student, TimeStamp) VALUES ( '2', ('2015-10-05'));
---INSERT INTO dbo.Registration ( Student, TimeStamp) VALUES ('3', ('2015-10-05'));
+
 

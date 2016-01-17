@@ -1,4 +1,15 @@
-﻿
+﻿--ClubCreation
+INSERT INTO dbo.Club ( Name ) VALUES ('Frederikssund');
+INSERT INTO dbo.Club ( Name ) VALUES ('Hillerød');
+
+--TeamCreation
+INSERT INTO dbo.Team ( Name, Club ) VALUES ('Panda', '1');
+INSERT INTO dbo.Team ( Name, Club ) VALUES ('Abe', '1');
+INSERT INTO dbo.Team ( Name, Club ) VALUES ('Tiger', '1');
+INSERT INTO dbo.Team ( Name, Club ) VALUES ('Drage', '1');
+INSERT INTO dbo.Team ( Name, Club ) VALUES ('Voksen', '2');
+
+
 --PANDAHOLD
 INSERT INTO dbo.Student ( Name, Team) VALUES ('Natasha E. S. Jensen','1');
 INSERT INTO dbo.Student ( Name, Team) VALUES ('Storm B. Askbo','1');
