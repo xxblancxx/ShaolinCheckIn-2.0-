@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[Student]
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
    	[Name] VARCHAR(50) NOT NULL,
 	[Image] VARBINARY(MAX) NULL,
-	[IsActive] BIT NOT NULL, 
+	[IsActive] BIT  DEFAULT ((1)) NOT NULL,
 	[Team] INT NOT NULL, 
     CONSTRAINT [FK_TEAM] FOREIGN KEY ([Team]) REFERENCES [Team]([Id])
 )
@@ -28,6 +28,19 @@ CREATE TABLE [dbo].[Registration]
     CONSTRAINT [FK_STUDENT] FOREIGN KEY ([Student]) REFERENCES [Student]([Id])
 )
 
-
+CREATE TABLE [dbo].[UserLogin]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+  	[Username] VARCHAR(50) NOT NULL,
+	[Password] VARCHAR(50) NOT NULL
+)
+CREATE TABLE [dbo].[Message]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+  	[Content] VARCHAR(50) NOT NULL,
+	[Frontpage] BIT  DEFAULT ((0)) NOT NULL,
+	[Team] INT NOT NULL, 
+    CONSTRAINT [FK_TEAM_MESSAGE] FOREIGN KEY ([Team]) REFERENCES [Team]([Id])
+)
 
 
