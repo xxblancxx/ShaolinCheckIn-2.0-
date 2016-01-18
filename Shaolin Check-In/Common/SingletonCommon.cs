@@ -22,6 +22,10 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<Registration> _registrationList;
         private ObservableCollection<StudentRegistration> _displayedStudentRegistrations;
 
+        public List<UserLogin> UserLoginList { get; set; }
+
+        public ObservableCollection<Message> MessageList { get; set; }
+
         public ObservableCollection<StudentRegistration> DisplayedStudentRegistrations
         {
             get

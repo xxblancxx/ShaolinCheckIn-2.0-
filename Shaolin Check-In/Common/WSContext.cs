@@ -15,7 +15,7 @@ namespace Shaolin_Check_In.Common
     class WSContext
     {
         private HttpClientHandler handler;
-        public const string ServerUrl = "http://xxblancxx-001-site1.atempurl.com/api/";
+        public const string ServerUrl = "http://shaolin123-001-site1.btempurl.com/api/";
         public CancellationTokenSource CancelToken = new CancellationTokenSource();
         public async Task<ObservableCollection<Club>> GetAllClubs()
         {
@@ -140,7 +140,7 @@ namespace Shaolin_Check_In.Common
                 return registrationlist;
             }
         }
-        public async Task<ObservableCollection<Registration>> GetStudentRegistrations(int id)
+        public async Task<ObservableCollection<Registration>> GetStudentRegistration(int id)
         { // Looks for registrations connected to a specific student
             handler = new HttpClientHandler();
             //Creates a new HttpClientHandler.
@@ -183,10 +183,58 @@ namespace Shaolin_Check_In.Common
             }
         }
 
+        public async Task<ObservableCollection<Message>> GetAllMessages()
+        {
+            handler = new HttpClientHandler();
+            //Creates a new HttpClientHandler.
+            handler.UseDefaultCredentials = true;
+            //true if the default credentials are used; otherwise false. will use authentication credentials from the logged on user on your pc.
+            using (HttpClient client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                var task = client.GetAsync("Messages");
+                // var means the compiler will determine the explicit type of the variable, based on usage. this would give you a variable of type Client.
+                HttpResponseMessage response = await task;
+                response.EnsureSuccessStatusCode();
+                // check for response code (if response is not 200 throw exception)
+                var messageList = await response.Content.ReadAsAsync<ObservableCollection<Message>>(CancelToken.Token);
+                // var will give you a variable of type IEnumerable.
+                return messageList;
+            }
+        }
+
+        public async Task<List<UserLogin>> GetAllUserLogins()
+        {
+            handler = new HttpClientHandler();
+            //Creates a new HttpClientHandler.
+            handler.UseDefaultCredentials = true;
+            //true if the default credentials are used; otherwise false. will use authentication credentials from the logged on user on your pc.
+            using (HttpClient client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                var task = client.GetAsync("UserLogins");
+                // var means the compiler will determine the explicit type of the variable, based on usage. this would give you a variable of type Client.
+                HttpResponseMessage response = await task;
+                response.EnsureSuccessStatusCode();
+                // check for response code (if response is not 200 throw exception)
+                var userLoginList = await response.Content.ReadAsAsync<List<UserLogin>>(CancelToken.Token);
+                // var will give you a variable of type IEnumerable.
+                return userLoginList;
+            }
+        }
+
         #region LoadFromDB Methods
         public async void LoadClubs()
         { // Load clubs from DB into Singleton
             SingletonCommon.Instance.ClubList = await GetAllClubs();
+        }
+        public async void LoadMessages()
+        { // Load clubs from DB into Singleton
+            SingletonCommon.Instance.MessageList = await GetAllMessages();
+        }
+        public async void LoadUserLogins()
+        { // Load clubs from DB into Singleton
+            SingletonCommon.Instance.UserLoginList = await GetAllUserLogins();
         }
         public async void LoadTeams()
         { // Load teams from DB into Singleton
