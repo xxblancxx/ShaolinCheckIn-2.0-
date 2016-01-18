@@ -41,11 +41,10 @@ namespace Shaolin_Check_In.Model
             private set { _profilePicture = value; }
         }
 
-        public Student(string name, int id)
+        public Student(string name, int team)
         {
             Name = name;
-            Id = id;
-
+            Team = team;
         }
 
         public BitmapImage ConvertImg()

@@ -108,6 +108,8 @@
     <Compile Include="Common\WSContext.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\UserLogin.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\NewStudentViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="View\CreateNewPage.xaml.cs">
       <DependentUpon>CreateNewPage.xaml</DependentUpon>

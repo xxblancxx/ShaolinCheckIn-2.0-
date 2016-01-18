@@ -47,13 +47,12 @@ namespace Shaolin_Check_In.Model
             _sCommon = SingletonCommon.Instance;
             TeamList = new List<Team>();
 
-
         }
 
-
-
-
-
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
 

@@ -12,7 +12,7 @@ namespace Shaolin_Check_In.ViewModels
     {
 
         public MessageDialog MsgDialog { get; set; }
-        private SingletonCommon _sCommon = SingletonCommon.Instance;
+        public SingletonCommon _sCommon = SingletonCommon.Instance;
         public WSContext WsContext = new WSContext();
 
         public SingletonCommon SCommon

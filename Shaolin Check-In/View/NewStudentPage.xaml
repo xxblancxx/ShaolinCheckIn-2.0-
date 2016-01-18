@@ -5,8 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:ViewModels="using:Shaolin_Check_In.ViewModels"
     x:Class="Shaolin_Check_In.View.NewStudentPage"
     mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModels:NewStudentViewModel/>
+    </Page.DataContext>
 
     <Grid Background="#FF191919">
         <Grid.RowDefinitions>
@@ -36,6 +41,25 @@
 					IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" Margin="0,20,30,20" RequestedTheme="Dark"/>
             </Grid>
         </Viewbox>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="300,0">
+            <TextBox x:Name="nameBox" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="0,0,0,30" PlaceholderText="Medlemmets Navn" Foreground="Black" BorderBrush="#FF505050" Background="White"/>
+            <ComboBox x:Name="clubPicker" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,30" ItemsSource="{Binding SCommon.ClubList}">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="SelectionChanged">
+                        <Core:InvokeCommandAction Command="{Binding PickClubCommand}" CommandParameter="{Binding SelectedItem, ElementName=clubPicker}"/>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </ComboBox>
+            <ComboBox x:Name="teamPicker" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,30" ItemsSource="{Binding TeamList}"/>
+            <Button x:Name="button" Content="Gem" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,50,30" RequestedTheme="Dark">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Click">
+                        <Core:InvokeCommandAction Command="{Binding CreateStudentWithTeam}" CommandParameter="{Binding SelectedItem, ElementName=teamPicker}"/>
+                        <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.CreateNewPage"/>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Button>
+        </StackPanel>
 
     </Grid>
 </Page>

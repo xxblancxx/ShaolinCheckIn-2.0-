@@ -39,5 +39,9 @@ namespace Shaolin_Check_In.Model
             Id = id;
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
