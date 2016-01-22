@@ -55,7 +55,7 @@ namespace Shaolin_Check_In.ViewModels
             StudentList = new ObservableCollection<Student>();
             foreach (var s in SCommon.StudentList)
             {
-                if (s.Team.Equals(SCommon.SelectedTeam.Id))
+                if (s.Team.Equals(SCommon.SelectedTeam.Id) && s.IsActive)
                 {
                     StudentList.Add(s);
                 }

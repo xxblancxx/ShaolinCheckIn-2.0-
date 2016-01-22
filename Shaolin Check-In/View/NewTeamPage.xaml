@@ -5,16 +5,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:ViewModels="using:Shaolin_Check_In.ViewModels"
     x:Class="Shaolin_Check_In.View.NewTeamPage"
     mc:Ignorable="d">
 
+    <Page.DataContext>
+        <ViewModels:NewTeamViewModel/>
+    </Page.DataContext>
+
     <Grid Background="#FF191919">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="11*"/>
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
 
-        <Viewbox HorizontalAlignment="Left">
+        <Viewbox HorizontalAlignment="Left" Grid.ColumnSpan="3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
@@ -36,6 +46,17 @@
 					IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" Margin="0,20,30,20" RequestedTheme="Dark"/>
             </Grid>
         </Viewbox>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Grid.Column="1">
+            <TextBox x:Name="nameBox" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,0,0,30" PlaceholderText="Holdnavn"/>
+            <ComboBox x:Name="clubPicker" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,30" ItemsSource="{Binding SCommon.ClubList}" PlaceholderText="Vælg Klub"/>
+            <Button x:Name="button" Content="Gem" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,50,30" RequestedTheme="Dark">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Click">
+                        <Core:InvokeCommandAction Command="{Binding CreateTeamCommand}" CommandParameter="{Binding SelectedItem, ElementName=clubPicker}"/>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Button>
+        </StackPanel>
 
     </Grid>
 </Page>

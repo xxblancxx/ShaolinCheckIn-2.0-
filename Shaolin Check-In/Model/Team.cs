@@ -33,10 +33,10 @@ namespace Shaolin_Check_In.Model
 
         public int Id { get; set; }
         public int Club { get; set; }
-        public Team(string name, int id)
+        public Team(string name, int club)
         {
             Name = name;
-            Id = id;
+            Club = club;
         }
 
         public override string ToString()

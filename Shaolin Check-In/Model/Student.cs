@@ -23,6 +23,7 @@ namespace Shaolin_Check_In.Model
         public int Team { get; set; }
 
         public byte[] Image { get; set; }
+        public bool IsActive { get; set; }
 
         public BitmapImage ProfilePicture
         {
@@ -44,6 +45,7 @@ namespace Shaolin_Check_In.Model
         public Student(string name, int team)
         {
             Name = name;
+            IsActive = true;
             Team = team;
         }
 
