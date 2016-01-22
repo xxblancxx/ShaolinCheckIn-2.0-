@@ -5,8 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Shaolin_Check_In.Common;
 using Shaolin_Check_In.Model;
+using Shaolin_Check_In.View;
 
 namespace Shaolin_Check_In.ViewModels
 {
@@ -27,16 +30,18 @@ namespace Shaolin_Check_In.ViewModels
 
         public void CreateTeam(Club club)
         {
-            if (Name == null)
+            if (Name == null || Name == "")
             {
                 MsgDialog = new MessageDialog("Indtast holdnavn.");
+                MsgDialog.ShowAsync();
             }
-            else if (club != null)
+            else if (!club.Equals(null))
             {
                 Team team = new Team(Name, club.Id);
                 WsContext.CreateTeam(team);
+                frame.Navigate(typeof(CreateNewPage));
             }
-            
+
         }
         public override void SetSelectedObject(object obj) {/*Not Needed for this VM*/}
     }

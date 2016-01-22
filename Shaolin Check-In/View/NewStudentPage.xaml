@@ -60,7 +60,6 @@
                 <Interactivity:Interaction.Behaviors>
                     <Core:EventTriggerBehavior EventName="Click">
                         <Core:InvokeCommandAction Command="{Binding CreateStudentWithTeam}" CommandParameter="{Binding SelectedItem, ElementName=teamPicker}"/>
-                        <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.CreateNewPage"/>
                     </Core:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
             </Button>

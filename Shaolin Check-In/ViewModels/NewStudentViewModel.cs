@@ -11,6 +11,7 @@ using Windows.UI.Popups;
 using Shaolin_Check_In.Annotations;
 using Shaolin_Check_In.Common;
 using Shaolin_Check_In.Model;
+using Shaolin_Check_In.View;
 
 namespace Shaolin_Check_In.ViewModels
 {
@@ -79,18 +80,20 @@ namespace Shaolin_Check_In.ViewModels
         }
         public async void CreateStudent(Team team)
         {
-            if (team != null)
+            if (Name == null || Name == "")
+            {
+                MsgDialog = new MessageDialog("Indtast medlemmets navn.");
+                MsgDialog.ShowAsync();
+            }
+            else if (team != null)
             {
                 int teamNumber = team.Id;
                 Student newStudent = new Student(Name, teamNumber);
                 await WsContext.CreateStudent(newStudent);
                 WsContext.LoadStudents();
+                frame.Navigate(typeof (CreateNewPage));
             }
-            else if (team == null)
-            {
-                MsgDialog = new MessageDialog("Vælg hvilket hold, medlemmet tilhører.");
-                MsgDialog.ShowAsync();
-            }
+            
         
         }
         public override void SetSelectedObject(object obj) {/* Do Nothing Really*/}
