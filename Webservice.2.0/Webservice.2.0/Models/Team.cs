@@ -24,7 +24,11 @@ namespace Webservice._2._0
 
         public int Club { get; set; }
 
+        public int? Message { get; set; }
+
         public virtual Club Club1 { get; set; }
+
+        public virtual Message Message1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }

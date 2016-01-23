@@ -9,15 +9,24 @@ namespace Webservice._2._0
     [Table("Message")]
     public partial class Message
     {
-            public int Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Message()
+        {
+            Teams = new HashSet<Team>();
+        }
 
-            [Required]
-            [StringLength(50)]
-            public string Content { get; set; }
+        public int Id { get; set; }
 
-            public bool Frontpage { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Content { get; set; }
 
-            public int Team { get; set; }
+        public bool Frontpage { get; set; }
+
+        public int Team { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Team> Teams { get; set; }
 
         public virtual Team Team1 { get; set; }
     }

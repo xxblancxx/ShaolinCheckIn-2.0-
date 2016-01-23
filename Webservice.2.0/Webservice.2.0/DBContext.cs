@@ -8,7 +8,7 @@ namespace Webservice._2._0
     public partial class DBContext : DbContext
     {
         public DBContext()
-            : base("name=DBContext1")
+            : base("name=DBContext")
         {
             Configuration.ProxyCreationEnabled = false;
         }
@@ -36,6 +36,12 @@ namespace Webservice._2._0
             modelBuilder.Entity<Message>()
                 .Property(e => e.Content)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Message>()
+                .HasMany(e => e.Teams)
+                .WithOptional(e => e.Message1)
+                .HasForeignKey(e => e.Message)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Student>()
                 .Property(e => e.Name)
