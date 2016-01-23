@@ -104,11 +104,13 @@
     </Compile>
     <Compile Include="Common\ImageConversionHandler.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SingletonCommon.cs" />
     <Compile Include="Common\WSContext.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\UserLogin.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\NewClubViewModel.cs" />
     <Compile Include="ViewModels\NewStudentViewModel.cs" />
     <Compile Include="ViewModels\NewTeamViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />

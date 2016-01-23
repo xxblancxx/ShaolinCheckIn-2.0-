@@ -11,7 +11,7 @@ namespace Shaolin_Check_In.Model
     {
 
         private string _name;
-        private SingletonCommon _sCommon;
+        //  private SingletonCommon _sCommon;
         private List<Team> _teamList;
 
         public List<Team> TeamList
@@ -32,19 +32,9 @@ namespace Shaolin_Check_In.Model
             }
         }
 
-        public SingletonCommon SCommon
-        {
-            get { return _sCommon; }
-            set { _sCommon = value; }
-        }
-
-        //public string Address { get; set; }
-
-        public Club(string name, int id /*string address*/)
+        public Club(string name)
         {
             Name = name;
-            Id = id;
-            _sCommon = SingletonCommon.Instance;
             TeamList = new List<Team>();
 
         }

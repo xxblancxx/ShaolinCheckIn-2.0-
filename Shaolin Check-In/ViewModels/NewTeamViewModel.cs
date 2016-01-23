@@ -28,7 +28,7 @@ namespace Shaolin_Check_In.ViewModels
             set { _createTeamCommand = value; }
         }
 
-        public void CreateTeam(Club club)
+        public async void CreateTeam(Club club)
         {
             if (Name == null || Name == "")
             {
@@ -38,7 +38,8 @@ namespace Shaolin_Check_In.ViewModels
             else if (!club.Equals(null))
             {
                 Team team = new Team(Name, club.Id);
-                WsContext.CreateTeam(team);
+              await  WsContext.CreateTeam(team);
+                WsContext.LoadTeams();
                 frame.Navigate(typeof(CreateNewPage));
             }
 
