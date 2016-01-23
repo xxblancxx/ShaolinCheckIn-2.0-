@@ -35,12 +35,18 @@
     </Page.DataContext>
 
     <Grid Background="#FF191919">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="11*"/>
-            <RowDefinition Height="53*"/>
+            <RowDefinition Height="110*"/>
+            <RowDefinition Height="191*"/>
+            <RowDefinition Height="339*"/>
         </Grid.RowDefinitions>
 
-        <Viewbox HorizontalAlignment="Left">
+        <Viewbox HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="0,0,0,4.6" Width="490">
             <Grid HorizontalAlignment="Left" Margin="50,0,0,0">
                 <StackPanel Margin="0,0,50,0" Orientation="Horizontal">
                     <TextBlock x:Name="pageTitle" Text="Shaolin Kung Fu Danmark" FontFamily="Footlight MT Light" 
@@ -51,7 +57,7 @@
             </Grid>
         </Viewbox>
 
-        <GridView x:Name="GridView" Grid.Row="1"  FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Header="Vælg Klub" RequestedTheme="Dark" ItemsSource="{Binding SCommon.ClubList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}">
+        <GridView x:Name="GridView" Grid.Row="2"  FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Header="Vælg Klub" RequestedTheme="Dark" ItemsSource="{Binding SCommon.ClubList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}" Grid.ColumnSpan="3" Margin="191,4.2,190,199" Height="136" Width="643">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VariableSizedWrapGrid  Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
@@ -65,10 +71,13 @@
             </Interactivity:Interaction.Behaviors>
         </GridView>
         <Button x:Name="commandBarActivationButton" Style="{StaticResource NavigationBackButtonNormalStyle}"
-        	VerticalAlignment="Bottom" RequestedTheme="Dark" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,20,10" Click="CommandBarClick" RenderTransformOrigin="0.5,0.5" >
+        	VerticalAlignment="Bottom" RequestedTheme="Dark" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,20,10" Click="CommandBarClick" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" >
             <Button.RenderTransform>
                 <CompositeTransform Rotation="90"/>
             </Button.RenderTransform>
         </Button>
+        <Grid Grid.ColumnSpan="2" Grid.Column="1" Margin="341.4,0.4,0,338" Grid.Row="1" Grid.RowSpan="2" Background="#7FFCE093">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="" Margin="10" FontSize="21.333" FontFamily="Cambria" Foreground="White"/>
+        </Grid>
     </Grid>
 </Page>
