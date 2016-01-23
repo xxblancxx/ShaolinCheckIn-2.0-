@@ -12,6 +12,7 @@ namespace Shaolin_Check_In.Model
         private string _name;
         private SingletonCommon _sCommon;
         private List<Student> _studentList;
+        public List<Message> MessageList { get; set; } // dunno why, DB acting up.
 
         public string Name
         {
@@ -33,6 +34,7 @@ namespace Shaolin_Check_In.Model
 
         public int Id { get; set; }
         public int Club { get; set; }
+        public int? Message { get; set; }
         public Team(string name, int club)
         {
             Name = name;

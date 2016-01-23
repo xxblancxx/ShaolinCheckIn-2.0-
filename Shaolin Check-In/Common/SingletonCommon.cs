@@ -21,6 +21,7 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<StudentRegistration> _studentRegistrationList;
         private ObservableCollection<Registration> _registrationList;
         private ObservableCollection<StudentRegistration> _displayedStudentRegistrations;
+        private string _frontpageMessage;
 
         public List<UserLogin> UserLoginList { get; set; }
 
@@ -41,6 +42,16 @@ namespace Shaolin_Check_In.Common
             set
             {
                 _displayedStudentRegistrations = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FrontpageMessage
+        {
+            get { return _frontpageMessage; }
+            set
+            {
+                _frontpageMessage = value;
                 OnPropertyChanged();
             }
         }
@@ -123,7 +134,21 @@ namespace Shaolin_Check_In.Common
         //private Constructor, only Instance can initialize.
         private SingletonCommon() { }
 
-
+        public void SetFrontpageMessage()
+        {
+            if (MessageList != null)
+            {
+                var newestMessage = new Message(null, false, 0);
+                foreach (var message in MessageList)
+                {
+                    if (message.Id > newestMessage.Id && message.Frontpage)
+                    {
+                        newestMessage = message;
+                    }
+                }
+                FrontpageMessage = newestMessage.ToString();
+            }
+        }
 
 
 

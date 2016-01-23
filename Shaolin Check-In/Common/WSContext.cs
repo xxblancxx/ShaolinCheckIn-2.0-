@@ -294,6 +294,7 @@ namespace Shaolin_Check_In.Common
         public async void LoadMessages()
         { // Load  from DB into Singleton
             SingletonCommon.Instance.MessageList = await GetAllMessages();
+            SingletonCommon.Instance.SetFrontpageMessage();
         }
         public async void LoadUserLogins()
         { // Load  from DB into Singleton

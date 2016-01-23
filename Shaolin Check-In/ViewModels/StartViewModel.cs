@@ -16,6 +16,8 @@ namespace Shaolin_Check_In.ViewModels
         private RelayArgCommand<Club> _selectClubCommand;
 
         private bool msgdialogShown;
+        
+
         public RelayArgCommand<Club> SelectClubCommand
         {
             get
@@ -38,10 +40,12 @@ namespace Shaolin_Check_In.ViewModels
                 try
                 {
                     WsContext.LoadClubs();
-                    WsContext.LoadTeams();
+                   WsContext.LoadTeams();
                     WsContext.LoadStudents();
                     WsContext.LoadRegistrations();
                     WsContext.LoadStudentRegistrations();
+                        WsContext.LoadMessages();
+                       WsContext.LoadUserLogins();
                     SCommon.AlreadyLoaded = true;
                 }
                 catch (HttpRequestException)
@@ -76,7 +80,7 @@ namespace Shaolin_Check_In.ViewModels
             closeButton.Invoked = CloseApplicationCommand;
             msgdialog.Commands.Add(closeButton);
             await msgdialog.ShowAsync();
-        } 
+        }
         #endregion
 
         #region Commands in MsgDialog

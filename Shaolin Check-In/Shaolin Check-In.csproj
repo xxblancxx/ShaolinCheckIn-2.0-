@@ -130,6 +130,9 @@
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="View\MessagePage.xaml.cs">
+      <DependentUpon>MessagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NewClubPage.xaml.cs">
       <DependentUpon>NewClubPage.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
     <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MessagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\NewClubPage.xaml">
       <SubType>Designer</SubType>

@@ -21,6 +21,7 @@ namespace Shaolin_Check_In.ViewModels
         private ObservableCollection<Student> _studentList;
         private IAsyncOperation<IUICommand> _asyncOp;
         private DispatcherTimer _timer;
+        private string _message;
         public Student SelectedStudent { get; set; }
 
         public ObservableCollection<Student> StudentList
@@ -38,6 +39,21 @@ namespace Shaolin_Check_In.ViewModels
             }
         }
 
+        public string Message
+        {
+            get
+            {
+                foreach (var message in SCommon.MessageList)
+                {
+                    if (message.Id == SCommon.SelectedTeam.Message)
+                    {
+                        _message = message.ToString();
+                    }
+                }
+                return _message;
+            }
+            set { _message = value; }
+        }
 
         public RelayArgCommand<Student> SelectStudentCommand
         {
@@ -124,7 +140,7 @@ namespace Shaolin_Check_In.ViewModels
                 {
                     _timer = new DispatcherTimer();
                     _timer.Tick += StopAfterTime;
-                    _timer.Interval = new TimeSpan(0, 0, 0, 1,500); 
+                    _timer.Interval = new TimeSpan(0, 0, 0, 1, 500);
                     _asyncOp = MsgDialog.ShowAsync();
                     _timer.Start();
                 }

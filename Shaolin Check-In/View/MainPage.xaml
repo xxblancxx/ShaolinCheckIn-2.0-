@@ -27,6 +27,13 @@
                     </Core:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
             </AppBarButton>
+            <AppBarButton Icon="Message" Label="Beskeder">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Click">
+                        <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.MessagePage"/>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -42,8 +49,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="110*"/>
-            <RowDefinition Height="191*"/>
-            <RowDefinition Height="339*"/>
+            <RowDefinition Height="139*"/>
+            <RowDefinition Height="391*"/>
         </Grid.RowDefinitions>
 
         <Viewbox HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="0,0,0,4.6" Width="490">
@@ -57,7 +64,7 @@
             </Grid>
         </Viewbox>
 
-        <GridView x:Name="GridView" Grid.Row="2"  FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Header="Vælg Klub" RequestedTheme="Dark" ItemsSource="{Binding SCommon.ClubList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}" Grid.ColumnSpan="3" Margin="191,4.2,190,199" Height="136" Width="643">
+        <GridView x:Name="GridView" Grid.Row="2"  FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Header="Vælg Klub" RequestedTheme="Dark" ItemsSource="{Binding SCommon.ClubList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}" Grid.ColumnSpan="3" Margin="0,0,0,30">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VariableSizedWrapGrid  Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
@@ -71,13 +78,15 @@
             </Interactivity:Interaction.Behaviors>
         </GridView>
         <Button x:Name="commandBarActivationButton" Style="{StaticResource NavigationBackButtonNormalStyle}"
-        	VerticalAlignment="Bottom" RequestedTheme="Dark" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,20,10" Click="CommandBarClick" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+        	VerticalAlignment="Bottom" RequestedTheme="Dark" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,20,10" Click="CommandBarClick" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Grid.Column="2" >
             <Button.RenderTransform>
                 <CompositeTransform Rotation="90"/>
             </Button.RenderTransform>
         </Button>
-        <Grid Grid.ColumnSpan="2" Grid.Column="1" Margin="341.4,0.4,0,338" Grid.Row="1" Grid.RowSpan="2" Background="#7FFCE093">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="" Margin="10" FontSize="21.333" FontFamily="Cambria" Foreground="White"/>
-        </Grid>
+        <Viewbox Grid.Row="1" Grid.Column="2">
+            <Grid Background="#7FFCE093" Height="139" Width="341">
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding SCommon.FrontpageMessage}" FontSize="21.333" FontFamily="Cambria" Foreground="White" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Viewbox>
     </Grid>
 </Page>

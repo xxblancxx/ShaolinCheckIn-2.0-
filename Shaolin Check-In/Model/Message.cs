@@ -22,5 +22,10 @@ namespace Shaolin_Check_In.Model
             Frontpage = frontpage;
             Team = team;
         }
+
+        public override string ToString()
+        {
+            return Content;
+        }
     }
 }
