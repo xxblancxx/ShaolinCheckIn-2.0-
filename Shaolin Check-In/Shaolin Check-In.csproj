@@ -111,6 +111,7 @@
     <Compile Include="Model\UserLogin.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\NewClubViewModel.cs" />
+    <Compile Include="ViewModels\NewMessageViewModel.cs" />
     <Compile Include="ViewModels\NewStudentViewModel.cs" />
     <Compile Include="ViewModels\NewTeamViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
