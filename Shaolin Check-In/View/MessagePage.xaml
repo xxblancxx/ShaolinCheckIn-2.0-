@@ -39,7 +39,7 @@
 
                         <Interactivity:Interaction.Behaviors>
                             <Core:EventTriggerBehavior EventName="Click">
-                                <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.CreateNewPage"/>
+                                <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.MainPage"/>
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
 
@@ -58,7 +58,7 @@
                     </Interactivity:Interaction.Behaviors>
                 </ComboBox>
                 <ComboBox x:Name="teamPicker" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,-0.4,30" ItemsSource="{Binding TeamList}" PlaceholderText="Vælg Hold"/>
-                <CheckBox x:Name="checkBox" Content="Beskeden vises på forsiden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,30" RequestedTheme="Dark" DataContext="{Binding FrontPage}"/>
+                <CheckBox x:Name="checkBox" Content="Beskeden vises på forsiden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,30" RequestedTheme="Dark" IsChecked="{Binding FrontPage, Mode=TwoWay}"/>
                 <Button x:Name="button" Content="Gem" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,50,30" RequestedTheme="Dark">
                     <Interactivity:Interaction.Behaviors>
                         <Core:EventTriggerBehavior EventName="Click">

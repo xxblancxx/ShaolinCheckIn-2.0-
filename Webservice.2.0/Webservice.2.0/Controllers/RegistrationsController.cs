@@ -18,16 +18,16 @@ namespace Webservice._2._0.Controllers
         private DBContext db = new DBContext();
 
         // GET: api/Registrations
-        public IQueryable<Registration> GetRegistrations()
+        public IQueryable<Registration> GetRegistration()
         {
-            return db.Registrations;
+            return db.Registration;
         }
 
         // GET: api/Registrations/5
         [ResponseType(typeof(Registration))]
         public async Task<IHttpActionResult> GetRegistration(int id)
         {
-            Registration registration = await db.Registrations.FindAsync(id);
+            Registration registration = await db.Registration.FindAsync(id);
             if (registration == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace Webservice._2._0.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Registrations.Add(registration);
+            db.Registration.Add(registration);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = registration.Id }, registration);
@@ -90,13 +90,13 @@ namespace Webservice._2._0.Controllers
         [ResponseType(typeof(Registration))]
         public async Task<IHttpActionResult> DeleteRegistration(int id)
         {
-            Registration registration = await db.Registrations.FindAsync(id);
+            Registration registration = await db.Registration.FindAsync(id);
             if (registration == null)
             {
                 return NotFound();
             }
 
-            db.Registrations.Remove(registration);
+            db.Registration.Remove(registration);
             await db.SaveChangesAsync();
 
             return Ok(registration);
@@ -113,7 +113,7 @@ namespace Webservice._2._0.Controllers
 
         private bool RegistrationExists(int id)
         {
-            return db.Registrations.Count(e => e.Id == id) > 0;
+            return db.Registration.Count(e => e.Id == id) > 0;
         }
     }
 }

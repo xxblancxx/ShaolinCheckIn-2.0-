@@ -13,44 +13,44 @@ using Webservice._2._0;
 
 namespace Webservice._2._0.Controllers
 {
-    public class TeamsController : ApiController
+    public class Students1Controller : ApiController
     {
         private DBContext db = new DBContext();
 
-        // GET: api/Teams
-        public IQueryable<Team> GetTeam()
+        // GET: api/Students1
+        public IQueryable<Student> GetStudent()
         {
-            return db.Team;
+            return db.Student;
         }
 
-        // GET: api/Teams/5
-        [ResponseType(typeof(Team))]
-        public async Task<IHttpActionResult> GetTeam(int id)
+        // GET: api/Students1/5
+        [ResponseType(typeof(Student))]
+        public async Task<IHttpActionResult> GetStudent(int id)
         {
-            Team team = await db.Team.FindAsync(id);
-            if (team == null)
+            Student student = await db.Student.FindAsync(id);
+            if (student == null)
             {
                 return NotFound();
             }
 
-            return Ok(team);
+            return Ok(student);
         }
 
-        // PUT: api/Teams/5
+        // PUT: api/Students1/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutTeam(int id, Team team)
+        public async Task<IHttpActionResult> PutStudent(int id, Student student)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != team.Id)
+            if (id != student.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(team).State = EntityState.Modified;
+            db.Entry(student).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace Webservice._2._0.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TeamExists(id))
+                if (!StudentExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +71,35 @@ namespace Webservice._2._0.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Teams
-        [ResponseType(typeof(Team))]
-        public async Task<IHttpActionResult> PostTeam(Team team)
+        // POST: api/Students1
+        [ResponseType(typeof(Student))]
+        public async Task<IHttpActionResult> PostStudent(Student student)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Team.Add(team);
+            db.Student.Add(student);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = team.Id }, team);
+            return CreatedAtRoute("DefaultApi", new { id = student.Id }, student);
         }
 
-        // DELETE: api/Teams/5
-        [ResponseType(typeof(Team))]
-        public async Task<IHttpActionResult> DeleteTeam(int id)
+        // DELETE: api/Students1/5
+        [ResponseType(typeof(Student))]
+        public async Task<IHttpActionResult> DeleteStudent(int id)
         {
-            Team team = await db.Team.FindAsync(id);
-            if (team == null)
+            Student student = await db.Student.FindAsync(id);
+            if (student == null)
             {
                 return NotFound();
             }
 
-            db.Team.Remove(team);
+            db.Student.Remove(student);
             await db.SaveChangesAsync();
 
-            return Ok(team);
+            return Ok(student);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +111,9 @@ namespace Webservice._2._0.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TeamExists(int id)
+        private bool StudentExists(int id)
         {
-            return db.Team.Count(e => e.Id == id) > 0;
+            return db.Student.Count(e => e.Id == id) > 0;
         }
     }
 }

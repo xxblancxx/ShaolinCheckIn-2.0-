@@ -18,16 +18,16 @@ namespace Webservice._2._0.Controllers
         private DBContext db = new DBContext();
 
         // GET: api/Clubs
-        public IQueryable<Club> GetClubs()
+        public IQueryable<Club> GetClub()
         {
-            return db.Clubs;
+            return db.Club;
         }
 
         // GET: api/Clubs/5
         [ResponseType(typeof(Club))]
         public async Task<IHttpActionResult> GetClub(int id)
         {
-            Club club = await db.Clubs.FindAsync(id);
+            Club club = await db.Club.FindAsync(id);
             if (club == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace Webservice._2._0.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Clubs.Add(club);
+            db.Club.Add(club);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = club.Id }, club);
@@ -90,13 +90,13 @@ namespace Webservice._2._0.Controllers
         [ResponseType(typeof(Club))]
         public async Task<IHttpActionResult> DeleteClub(int id)
         {
-            Club club = await db.Clubs.FindAsync(id);
+            Club club = await db.Club.FindAsync(id);
             if (club == null)
             {
                 return NotFound();
             }
 
-            db.Clubs.Remove(club);
+            db.Club.Remove(club);
             await db.SaveChangesAsync();
 
             return Ok(club);
@@ -113,7 +113,7 @@ namespace Webservice._2._0.Controllers
 
         private bool ClubExists(int id)
         {
-            return db.Clubs.Count(e => e.Id == id) > 0;
+            return db.Club.Count(e => e.Id == id) > 0;
         }
     }
 }

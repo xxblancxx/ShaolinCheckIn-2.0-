@@ -16,7 +16,7 @@ namespace Shaolin_Check_In.ViewModels
         private RelayArgCommand<Club> _selectClubCommand;
 
         private bool msgdialogShown;
-        
+
 
         public RelayArgCommand<Club> SelectClubCommand
         {
@@ -40,12 +40,12 @@ namespace Shaolin_Check_In.ViewModels
                 try
                 {
                     WsContext.LoadClubs();
-                   WsContext.LoadTeams();
+                    WsContext.LoadTeams();
                     WsContext.LoadStudents();
                     WsContext.LoadRegistrations();
                     WsContext.LoadStudentRegistrations();
-                        WsContext.LoadMessages();
-                       WsContext.LoadUserLogins();
+                    WsContext.LoadMessages();
+                    WsContext.LoadUserLogins();
                     SCommon.AlreadyLoaded = true;
                 }
                 catch (HttpRequestException)

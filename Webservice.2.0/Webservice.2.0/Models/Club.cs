@@ -12,7 +12,7 @@ namespace Webservice._2._0
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Club()
         {
-            Teams = new HashSet<Team>();
+            Team = new HashSet<Team>();
         }
 
         public int Id { get; set; }
@@ -22,6 +22,6 @@ namespace Webservice._2._0
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Team> Teams { get; set; }
+        public virtual ICollection<Team> Team { get; set; }
     }
 }

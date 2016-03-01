@@ -138,7 +138,7 @@ namespace Shaolin_Check_In.Common
         {
             if (MessageList != null)
             {
-                var newestMessage = new Message(null, false, 0);
+                var newestMessage = new Message(null, false);
                 foreach (var message in MessageList)
                 {
                     if (message.Id > newestMessage.Id && message.Frontpage)

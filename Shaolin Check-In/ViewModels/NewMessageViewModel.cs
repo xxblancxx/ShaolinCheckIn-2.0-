@@ -88,10 +88,13 @@ namespace Shaolin_Check_In.ViewModels
 
         public async void CreateNewMessage(Team team)
         {
-            var newMsg = new Message(Message,FrontPage,team.Id);
+            var newMsg = new Message(Message,FrontPage);
             var dbcontext = new WSContext();
             await dbcontext.CreateMessage(newMsg);
-            dbcontext.LoadMessages();
+            await dbcontext.LoadMessages();
+            team.Message = SCommon.MessageList.Last().Id;
+            dbcontext.UpdateTeam(team);
+            frame.Navigate(typeof (MainPage));
         }
         public override void SetSelectedObject(object obj)
         {

@@ -12,7 +12,7 @@ namespace Webservice._2._0
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Student()
         {
-            Registrations = new HashSet<Registration>();
+            Registration = new HashSet<Registration>();
         }
 
         public int Id { get; set; }
@@ -28,7 +28,7 @@ namespace Webservice._2._0
         public int Team { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registration> Registrations { get; set; }
+        public virtual ICollection<Registration> Registration { get; set; }
 
         public virtual Team Team1 { get; set; }
     }

@@ -43,13 +43,17 @@ namespace Shaolin_Check_In.ViewModels
         {
             get
             {
-                foreach (var message in SCommon.MessageList)
+                if (SCommon.MessageList != null)
                 {
-                    if (message.Id == SCommon.SelectedTeam.Message)
+                    foreach (var message in SCommon.MessageList)
                     {
-                        _message = message.ToString();
+                        if (message.Id == SCommon.SelectedTeam.Message)
+                        {
+                            _message = message.ToString();
+                        }
                     }
                 }
+
                 return _message;
             }
             set { _message = value; }

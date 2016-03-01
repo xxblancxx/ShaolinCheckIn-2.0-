@@ -225,6 +225,29 @@ namespace Shaolin_Check_In.Common
 
             }
         }
+
+        public async Task UpdateTeam(Team team)
+        {
+            handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var response = await client.PutAsJsonAsync("Teams/" + team.Id, team, CancelToken.Token);
+                }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
+
+            }
+        }
+
         public async Task CreateClub(Club club)
         {
             handler = new HttpClientHandler();
@@ -314,7 +337,7 @@ namespace Shaolin_Check_In.Common
         { // Load clubs from DB into Singleton
             SingletonCommon.Instance.ClubList = await GetAllClubs();
         }
-        public async void LoadMessages()
+        public async Task LoadMessages()
         { // Load  from DB into Singleton
             SingletonCommon.Instance.MessageList = await GetAllMessages();
             SingletonCommon.Instance.SetFrontpageMessage();

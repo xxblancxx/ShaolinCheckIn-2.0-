@@ -18,16 +18,16 @@ namespace Webservice._2._0.Controllers
         private DBContext db = new DBContext();
 
         // GET: api/UserLogins
-        public IQueryable<UserLogin> GetUserLogins()
+        public IQueryable<UserLogin> GetUserLogin()
         {
-            return db.UserLogins;
+            return db.UserLogin;
         }
 
         // GET: api/UserLogins/5
         [ResponseType(typeof(UserLogin))]
         public async Task<IHttpActionResult> GetUserLogin(int id)
         {
-            UserLogin userLogin = await db.UserLogins.FindAsync(id);
+            UserLogin userLogin = await db.UserLogin.FindAsync(id);
             if (userLogin == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace Webservice._2._0.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.UserLogins.Add(userLogin);
+            db.UserLogin.Add(userLogin);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = userLogin.Id }, userLogin);
@@ -90,13 +90,13 @@ namespace Webservice._2._0.Controllers
         [ResponseType(typeof(UserLogin))]
         public async Task<IHttpActionResult> DeleteUserLogin(int id)
         {
-            UserLogin userLogin = await db.UserLogins.FindAsync(id);
+            UserLogin userLogin = await db.UserLogin.FindAsync(id);
             if (userLogin == null)
             {
                 return NotFound();
             }
 
-            db.UserLogins.Remove(userLogin);
+            db.UserLogin.Remove(userLogin);
             await db.SaveChangesAsync();
 
             return Ok(userLogin);
@@ -113,7 +113,7 @@ namespace Webservice._2._0.Controllers
 
         private bool UserLoginExists(int id)
         {
-            return db.UserLogins.Count(e => e.Id == id) > 0;
+            return db.UserLogin.Count(e => e.Id == id) > 0;
         }
     }
 }
