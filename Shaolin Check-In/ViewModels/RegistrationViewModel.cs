@@ -16,7 +16,9 @@ namespace Shaolin_Check_In.ViewModels
     {
 
         private string _searchText;
+        // private ObservableCollection<StudentRegistration> _localOnlyList;
 
+        public DateTimeOffset? Date { get; set; }
 
         public string SearchText
         {
@@ -26,7 +28,7 @@ namespace Shaolin_Check_In.ViewModels
                 if (value == _searchText) return;
                 _searchText = value;
                 OnPropertyChanged();
-                SearchForStudentName(SearchText);
+                SearchForDate();
             }
         }
 
@@ -55,51 +57,119 @@ namespace Shaolin_Check_In.ViewModels
             LocalStudentRegistrations = SCommon.StudentRegistrationList;
             //SearchDate = DateTime.Today;
         }
-        public void SearchForStudentName(string name)
-        { // Search List of StudentRegistrations, for specific student name.
+        //public void SearchForStudentName(string name)
+        //{ // Search List of StudentRegistrations, for specific student name.
+        //    if (name != null)
+        //    {
 
-            var studreg = new ObservableCollection<StudentRegistration>();
-            if (name != "")
+
+        //        var studreg = new ObservableCollection<StudentRegistration>();
+        //        if (name != "")
+        //        {
+        //            foreach (var sr in _localOnlyList)
+        //            {
+        //                if (sr.Name.ToLower().Contains(name.ToLower()))
+        //                {
+        //                    studreg.Add(sr);
+        //                }
+
+        //            }
+        //            LocalStudentRegistrations = studreg;
+
+        //        }
+        //        else 
+        //        {
+
+        //            LocalStudentRegistrations = SCommon.StudentRegistrationList;
+
+        //        }
+
+        //    }
+        //}
+
+        public void SearchNameInAlreadySorted(string name)
+        {
+            if (name != null)
             {
-                foreach (var sr in SCommon.StudentRegistrationList)
+
+
+                var studreg = new ObservableCollection<StudentRegistration>();
+                if (name != "")
                 {
-                    if (sr.Name.ToLower().Contains(name.ToLower()))
+                    foreach (var sr in LocalStudentRegistrations)
                     {
-                        studreg.Add(sr);
-                    }
-
-                }
-                LocalStudentRegistrations = studreg;
-            }
-            else
-            {
-                LocalStudentRegistrations = SCommon.StudentRegistrationList;
-            }
-        }
-
-        public void SearchForDate(DateTimeOffset? date)
-        { // Sort shown StudentRegistrations by Date.
-           
-            string dateString = date.ToString();
-            var studreg = new ObservableCollection<StudentRegistration>();
-           
-            if (!dateString.Contains(DateTime.Today.ToString("dd/MM/yy")))
-            {
-                if (dateString != "")
-                {
-                    foreach (var sr in SCommon.StudentRegistrationList)
-                    {
-                        string tempString = sr.TimeStamp.Date.ToString("MM/dd/yyyy");
-                        if (dateString.Contains(tempString))
+                        if (sr.Name.ToLower().Contains(name.ToLower()))
                         {
                             studreg.Add(sr);
                         }
 
                     }
                     LocalStudentRegistrations = studreg;
-                  }
+
+                }
+                else
+                {
+
+                    LocalStudentRegistrations = LocalStudentRegistrations;
+
+                }
+
             }
-            else
+        }
+
+        public void SearchForDate()
+        { // Sort shown StudentRegistrations by Date.
+            var date = Date;
+            if (date != null)
+            {
+                string dateString = date.Value.ToString("dd/MM/yyyy");
+                var studreg = new ObservableCollection<StudentRegistration>();
+
+
+                if (!string.IsNullOrEmpty(SearchText))
+                {
+                    
+                        if (dateString != "")
+                        {
+                            foreach (var sr in SCommon.StudentRegistrationList)
+                            {
+                                string tempString = sr.TimeStamp.Date.ToString("dd/MM/yyyy");
+                                if (dateString.Contains(tempString))
+                                {
+                                    studreg.Add(sr);
+                                }
+
+                            }
+                            LocalStudentRegistrations = studreg;
+                            SearchNameInAlreadySorted(SearchText);
+                        }
+                    
+                }
+                else if (string.IsNullOrEmpty(SearchText))
+                {
+                    if (dateString != "")
+                    {
+                        foreach (var sr in SCommon.StudentRegistrationList)
+                        {
+                            string tempString = sr.TimeStamp.Date.ToString("dd/MM/yyyy");
+                            if (dateString.Contains(tempString))
+                            {
+                                studreg.Add(sr);
+                            }
+
+                        }
+                        LocalStudentRegistrations = studreg;
+
+                    }
+                }
+
+            }
+            else if (!string.IsNullOrEmpty(SearchText))
+            {
+                LocalStudentRegistrations = SCommon.StudentRegistrationList;
+                SearchNameInAlreadySorted(SearchText);
+            }
+            else if (string.IsNullOrEmpty(SearchText))
             {
                 LocalStudentRegistrations = SCommon.StudentRegistrationList;
             }
