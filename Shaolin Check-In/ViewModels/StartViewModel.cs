@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Shaolin_Check_In.View;
 
 namespace Shaolin_Check_In.ViewModels
 {
@@ -16,7 +18,28 @@ namespace Shaolin_Check_In.ViewModels
         private RelayArgCommand<Club> _selectClubCommand;
 
         private bool msgdialogShown;
+        private RelayCommand _navigateCommand;
+        private RelayCommand _navigateToCreateCommand;
 
+        public RelayCommand NavigateToMessagesCommand
+        {
+            get
+            {
+                _navigateCommand  = new RelayCommand(ChangeViewToMessages);
+                return _navigateCommand;
+            }
+            set { _navigateCommand = value; }
+        }
+
+        public RelayCommand NavigateToCreateCommand
+        {
+            get
+            {
+                _navigateToCreateCommand = new RelayCommand(ChangeViewToCreate);
+                return _navigateToCreateCommand;
+            }
+            set { _navigateToCreateCommand = value; }
+        }
 
         public RelayArgCommand<Club> SelectClubCommand
         {
@@ -61,6 +84,16 @@ namespace Shaolin_Check_In.ViewModels
 
         }
 
+        public void ChangeViewToMessages()
+        {
+            SCommon.DesiredFrame = typeof (MessagePage);
+            frame.Navigate(typeof (CredentialsPage));
+        }
+        public void ChangeViewToCreate()
+        {
+            SCommon.DesiredFrame = typeof(CreateNewPage);
+            frame.Navigate(typeof(CredentialsPage));
+        }
         public StartViewModel()
         {
             msgdialogShown = false;

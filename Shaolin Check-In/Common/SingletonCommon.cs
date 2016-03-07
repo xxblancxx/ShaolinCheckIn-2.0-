@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace Shaolin_Check_In.Common
 {
@@ -22,6 +23,8 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<Registration> _registrationList;
         private ObservableCollection<StudentRegistration> _displayedStudentRegistrations;
         private string _frontpageMessage;
+
+        public Type DesiredFrame { get; set; }
 
         public List<UserLogin> UserLoginList { get; set; }
 

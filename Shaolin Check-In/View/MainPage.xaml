@@ -16,7 +16,7 @@
             <AppBarButton x:Name="appBarButton" Label="Ny" Icon="Add">
                 <Interactivity:Interaction.Behaviors>
                     <Core:EventTriggerBehavior EventName="Click">
-                        <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.CreateNewPage"/>
+                        <Core:InvokeCommandAction Command="{Binding NavigateToCreateCommand}"/>
                     </Core:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
             </AppBarButton>
@@ -30,7 +30,7 @@
             <AppBarButton Icon="Message" Label="Beskeder">
                 <Interactivity:Interaction.Behaviors>
                     <Core:EventTriggerBehavior EventName="Click">
-                        <Core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.MessagePage"/>
+                        <Core:InvokeCommandAction Command="{Binding NavigateToMessagesCommand}"/>
                     </Core:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
             </AppBarButton>
