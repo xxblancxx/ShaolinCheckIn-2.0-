@@ -4,11 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
@@ -120,9 +122,30 @@ namespace Shaolin_Check_In.ViewModels
 
         }
 
-        private void ClickPictureButton(IUICommand command)
+        private async void ClickPictureButton(IUICommand command)
         {
-            // Needs implementation of Filepicker and picture.
+            byte[] returnImage = null;
+            if (SelectedStudent != null)
+            {
+                
+                var pic = await PictureHandler.PictureTime();
+                using (IRandomAccessStreamWithContentType stream = await pic.OpenReadAsync())
+                {
+                    returnImage = new byte[stream.Size];
+
+                    using (DataReader reader = new DataReader(stream))
+
+                    {
+                        await reader.LoadAsync((uint)stream.Size);
+
+                        reader.ReadBytes(returnImage);
+                    }
+                }
+                SelectedStudent.Image = returnImage;
+                await WsContext.UpdateStudent(SelectedStudent);
+               WsContext.LoadStudents();
+
+            }
         }
         private void ClickcancelButton(IUICommand command)
         {
