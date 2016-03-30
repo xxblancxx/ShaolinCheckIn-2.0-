@@ -111,12 +111,19 @@
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\UserLogin.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\ActivityViewModel.cs" />
     <Compile Include="ViewModels\CredentialsViewModel.cs" />
     <Compile Include="ViewModels\NewClubViewModel.cs" />
     <Compile Include="ViewModels\NewMessageViewModel.cs" />
     <Compile Include="ViewModels\NewStudentViewModel.cs" />
     <Compile Include="ViewModels\NewTeamViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
+    <Compile Include="View\ActivityPage.xaml.cs">
+      <DependentUpon>ActivityPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClubActivityPage.xaml.cs">
+      <DependentUpon>ClubActivityPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateNewPage.xaml.cs">
       <DependentUpon>CreateNewPage.xaml</DependentUpon>
     </Compile>
@@ -181,6 +188,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\ActivityPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClubActivityPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreateNewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -20,12 +20,23 @@ namespace Shaolin_Check_In.ViewModels
         private bool msgdialogShown;
         private RelayCommand _navigateCommand;
         private RelayCommand _navigateToCreateCommand;
+        private RelayCommand _navigateToActivity;
+
+        public RelayCommand NavigateToActivityCommand
+        {
+            get
+            {
+                _navigateCommand = new RelayCommand(ChangeViewToActivity);
+                return _navigateToActivity;
+            }
+            set { _navigateToActivity = value; }
+        }
 
         public RelayCommand NavigateToMessagesCommand
         {
             get
             {
-                _navigateCommand  = new RelayCommand(ChangeViewToMessages);
+                _navigateCommand = new RelayCommand(ChangeViewToMessages);
                 return _navigateCommand;
             }
             set { _navigateCommand = value; }
@@ -62,9 +73,9 @@ namespace Shaolin_Check_In.ViewModels
             { // Loads Objects from DB on startup. Sets AlreadyLoaded to true if no exceptions happen, so it only happens once automatically.
                 try
                 {
-                    WsContext.LoadClubs();
-                    WsContext.LoadTeams();
-                    WsContext.LoadStudents();
+                    //WsContext.LoadClubs();
+                    //WsContext.LoadTeams();
+                    //WsContext.LoadStudents();
                     WsContext.LoadRegistrations();
                     WsContext.LoadStudentRegistrations();
                     WsContext.LoadMessages();
@@ -84,10 +95,15 @@ namespace Shaolin_Check_In.ViewModels
 
         }
 
+        public void ChangeViewToActivity()
+        {
+            SCommon.DesiredFrame = typeof(ActivityPage);
+            frame.Navigate(typeof(CredentialsPage));
+        }
         public void ChangeViewToMessages()
         {
-            SCommon.DesiredFrame = typeof (MessagePage);
-            frame.Navigate(typeof (CredentialsPage));
+            SCommon.DesiredFrame = typeof(MessagePage);
+            frame.Navigate(typeof(CredentialsPage));
         }
         public void ChangeViewToCreate()
         {

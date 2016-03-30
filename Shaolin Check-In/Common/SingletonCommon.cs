@@ -24,6 +24,9 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<StudentRegistration> _displayedStudentRegistrations;
         private string _frontpageMessage;
 
+        public ObservableCollection<Club> AllClubs { get; set; }
+        public ObservableCollection<Team> AllTeams { get; set; }
+        public ObservableCollection<Student> AllStudents { get; set; }
         public Type DesiredFrame { get; set; }
 
         public List<UserLogin> UserLoginList { get; set; }
@@ -36,10 +39,10 @@ namespace Shaolin_Check_In.Common
             {
                 if (_displayedStudentRegistrations != null)
                 {
-                      _displayedStudentRegistrations =
-                    new ObservableCollection<StudentRegistration>(_displayedStudentRegistrations.OrderByDescending(s => s.TimeStamp));
+                    _displayedStudentRegistrations =
+                  new ObservableCollection<StudentRegistration>(_displayedStudentRegistrations.OrderByDescending(s => s.TimeStamp));
                 }
-              
+
                 return _displayedStudentRegistrations;
             }
             set
@@ -96,8 +99,14 @@ namespace Shaolin_Check_In.Common
             get { return _clubList; }
             set
             {
-                if (Equals(value, _clubList)) return;
-                _clubList = value;
+                AllClubs = value;
+                foreach (var club in value)
+                {
+                    if (club.IsActive)
+                    {
+                        _clubList.Add(club);
+                    }
+                }
                 OnPropertyChanged();
             }
         }
@@ -108,8 +117,14 @@ namespace Shaolin_Check_In.Common
             get { return _teamList; }
             set
             {
-                if (Equals(value, _teamList)) return;
-                _teamList = value;
+                AllTeams = value;
+                foreach (var team in value)
+                {
+                    if (team.IsActive)
+                    {
+                        _teamList.Add(team);
+                    }
+                }
                 OnPropertyChanged();
             }
         }
@@ -120,8 +135,14 @@ namespace Shaolin_Check_In.Common
             get { return _studentList; }
             set
             {
-                if (Equals(value, _studentList)) return;
-                _studentList = value;
+                AllStudents = value;
+                foreach (var student in value)
+                {
+                    if (student.IsActive)
+                    {
+                        _studentList.Add(student);
+                    }
+                }
                 OnPropertyChanged();
             }
         }

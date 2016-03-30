@@ -268,6 +268,29 @@ namespace Shaolin_Check_In.Common
 
             }
         }
+
+        public async Task UpdateClub(Club club)
+        {
+            handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var response = await client.PutAsJsonAsync("Clubs/" + club.Id, club, CancelToken.Token);
+                }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
+
+            }
+        }
+
         public async Task CreateClub(Club club)
         {
             handler = new HttpClientHandler();

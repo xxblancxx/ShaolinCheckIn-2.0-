@@ -33,6 +33,7 @@ namespace Shaolin_Check_In.Model
 
 
         public int Id { get; set; }
+        public bool IsActive { get; set; }
         public int Club { get; set; }
         public int? Message { get; set; }
         public Team(string name, int club)

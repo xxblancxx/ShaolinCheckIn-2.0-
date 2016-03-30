@@ -21,6 +21,7 @@ namespace Shaolin_Check_In.Model
         }
 
         public int Id { get; set; }
+        public bool IsActive { get; set; }
         public string Name
         {
             get { return _name; }
