@@ -18,16 +18,16 @@ namespace Webservice._2._0.Controllers
         private DBContext db = new DBContext();
 
         // GET: api/Students
-        public IQueryable<Student> GetStudent()
+        public IQueryable<Student> GetStudents()
         {
-            return db.Student;
+            return db.Students;
         }
 
         // GET: api/Students/5
         [ResponseType(typeof(Student))]
         public async Task<IHttpActionResult> GetStudent(int id)
         {
-            Student student = await db.Student.FindAsync(id);
+            Student student = await db.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace Webservice._2._0.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Student.Add(student);
+            db.Students.Add(student);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = student.Id }, student);
@@ -90,13 +90,13 @@ namespace Webservice._2._0.Controllers
         [ResponseType(typeof(Student))]
         public async Task<IHttpActionResult> DeleteStudent(int id)
         {
-            Student student = await db.Student.FindAsync(id);
+            Student student = await db.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();
             }
 
-            db.Student.Remove(student);
+            db.Students.Remove(student);
             await db.SaveChangesAsync();
 
             return Ok(student);
@@ -113,7 +113,7 @@ namespace Webservice._2._0.Controllers
 
         private bool StudentExists(int id)
         {
-            return db.Student.Count(e => e.Id == id) > 0;
+            return db.Students.Count(e => e.Id == id) > 0;
         }
     }
 }

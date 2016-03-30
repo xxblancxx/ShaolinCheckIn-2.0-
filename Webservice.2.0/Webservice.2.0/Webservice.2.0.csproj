@@ -197,7 +197,6 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\RegistrationsController.cs" />
     <Compile Include="Controllers\StudentRegistrationsController.cs" />
-    <Compile Include="Controllers\Students1Controller.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\UserLoginsController.cs" />

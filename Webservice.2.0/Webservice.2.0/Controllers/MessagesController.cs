@@ -18,16 +18,16 @@ namespace Webservice._2._0.Controllers
         private DBContext db = new DBContext();
 
         // GET: api/Messages
-        public IQueryable<Message> GetMessage()
+        public IQueryable<Message> GetMessages()
         {
-            return db.Message;
+            return db.Messages;
         }
 
         // GET: api/Messages/5
         [ResponseType(typeof(Message))]
         public async Task<IHttpActionResult> GetMessage(int id)
         {
-            Message message = await db.Message.FindAsync(id);
+            Message message = await db.Messages.FindAsync(id);
             if (message == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace Webservice._2._0.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Message.Add(message);
+            db.Messages.Add(message);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = message.Id }, message);
@@ -90,13 +90,13 @@ namespace Webservice._2._0.Controllers
         [ResponseType(typeof(Message))]
         public async Task<IHttpActionResult> DeleteMessage(int id)
         {
-            Message message = await db.Message.FindAsync(id);
+            Message message = await db.Messages.FindAsync(id);
             if (message == null)
             {
                 return NotFound();
             }
 
-            db.Message.Remove(message);
+            db.Messages.Remove(message);
             await db.SaveChangesAsync();
 
             return Ok(message);
@@ -113,7 +113,7 @@ namespace Webservice._2._0.Controllers
 
         private bool MessageExists(int id)
         {
-            return db.Message.Count(e => e.Id == id) > 0;
+            return db.Messages.Count(e => e.Id == id) > 0;
         }
     }
 }

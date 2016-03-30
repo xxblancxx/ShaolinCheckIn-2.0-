@@ -18,16 +18,16 @@ namespace Webservice._2._0.Controllers
         private DBContext db = new DBContext();
 
         // GET: api/Teams
-        public IQueryable<Team> GetTeam()
+        public IQueryable<Team> GetTeams()
         {
-            return db.Team;
+            return db.Teams;
         }
 
         // GET: api/Teams/5
         [ResponseType(typeof(Team))]
         public async Task<IHttpActionResult> GetTeam(int id)
         {
-            Team team = await db.Team.FindAsync(id);
+            Team team = await db.Teams.FindAsync(id);
             if (team == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace Webservice._2._0.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Team.Add(team);
+            db.Teams.Add(team);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = team.Id }, team);
@@ -90,13 +90,13 @@ namespace Webservice._2._0.Controllers
         [ResponseType(typeof(Team))]
         public async Task<IHttpActionResult> DeleteTeam(int id)
         {
-            Team team = await db.Team.FindAsync(id);
+            Team team = await db.Teams.FindAsync(id);
             if (team == null)
             {
                 return NotFound();
             }
 
-            db.Team.Remove(team);
+            db.Teams.Remove(team);
             await db.SaveChangesAsync();
 
             return Ok(team);
@@ -113,7 +113,7 @@ namespace Webservice._2._0.Controllers
 
         private bool TeamExists(int id)
         {
-            return db.Team.Count(e => e.Id == id) > 0;
+            return db.Teams.Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -18,16 +18,16 @@ namespace Webservice._2._0.Controllers
         private DBContext db = new DBContext();
 
         // GET: api/StudentRegistrations
-        public IQueryable<StudentRegistration> GetStudentRegistration()
+        public IQueryable<StudentRegistration> GetStudentRegistrations()
         {
-            return db.StudentRegistration;
+            return db.StudentRegistrations;
         }
 
         // GET: api/StudentRegistrations/5
         [ResponseType(typeof(StudentRegistration))]
         public async Task<IHttpActionResult> GetStudentRegistration(int id)
         {
-            StudentRegistration studentRegistration = await db.StudentRegistration.FindAsync(id);
+            StudentRegistration studentRegistration = await db.StudentRegistrations.FindAsync(id);
             if (studentRegistration == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace Webservice._2._0.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.StudentRegistration.Add(studentRegistration);
+            db.StudentRegistrations.Add(studentRegistration);
 
             try
             {
@@ -105,13 +105,13 @@ namespace Webservice._2._0.Controllers
         [ResponseType(typeof(StudentRegistration))]
         public async Task<IHttpActionResult> DeleteStudentRegistration(int id)
         {
-            StudentRegistration studentRegistration = await db.StudentRegistration.FindAsync(id);
+            StudentRegistration studentRegistration = await db.StudentRegistrations.FindAsync(id);
             if (studentRegistration == null)
             {
                 return NotFound();
             }
 
-            db.StudentRegistration.Remove(studentRegistration);
+            db.StudentRegistrations.Remove(studentRegistration);
             await db.SaveChangesAsync();
 
             return Ok(studentRegistration);
@@ -128,7 +128,7 @@ namespace Webservice._2._0.Controllers
 
         private bool StudentRegistrationExists(int id)
         {
-            return db.StudentRegistration.Count(e => e.Id == id) > 0;
+            return db.StudentRegistrations.Count(e => e.Id == id) > 0;
         }
     }
 }

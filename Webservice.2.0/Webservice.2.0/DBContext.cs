@@ -8,18 +8,18 @@ namespace Webservice._2._0
     public partial class DBContext : DbContext
     {
         public DBContext()
-            : base("name=DBContext1")
+            : base("name=DBContext")
         {
             Configuration.ProxyCreationEnabled = false;
         }
 
-        public virtual DbSet<Club> Club { get; set; }
-        public virtual DbSet<Message> Message { get; set; }
-        public virtual DbSet<Registration> Registration { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
-        public virtual DbSet<Team> Team { get; set; }
-        public virtual DbSet<UserLogin> UserLogin { get; set; }
-        public virtual DbSet<StudentRegistration> StudentRegistration { get; set; }
+        public virtual DbSet<Club> Clubs { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Registration> Registrations { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<StudentRegistration> StudentRegistrations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace Webservice._2._0
                 .IsUnicode(false);
 
             modelBuilder.Entity<Club>()
-                .HasMany(e => e.Team)
+                .HasMany(e => e.Teams)
                 .WithRequired(e => e.Club1)
                 .HasForeignKey(e => e.Club)
                 .WillCascadeOnDelete(false);
@@ -38,7 +38,7 @@ namespace Webservice._2._0
                 .IsUnicode(false);
 
             modelBuilder.Entity<Message>()
-                .HasMany(e => e.Team)
+                .HasMany(e => e.Teams)
                 .WithOptional(e => e.Message1)
                 .HasForeignKey(e => e.Message)
                 .WillCascadeOnDelete();
@@ -48,7 +48,7 @@ namespace Webservice._2._0
                 .IsUnicode(false);
 
             modelBuilder.Entity<Student>()
-                .HasMany(e => e.Registration)
+                .HasMany(e => e.Registrations)
                 .WithRequired(e => e.Student1)
                 .HasForeignKey(e => e.Student)
                 .WillCascadeOnDelete(false);
@@ -58,7 +58,7 @@ namespace Webservice._2._0
                 .IsUnicode(false);
 
             modelBuilder.Entity<Team>()
-                .HasMany(e => e.Student)
+                .HasMany(e => e.Students)
                 .WithRequired(e => e.Team1)
                 .HasForeignKey(e => e.Team)
                 .WillCascadeOnDelete(false);
