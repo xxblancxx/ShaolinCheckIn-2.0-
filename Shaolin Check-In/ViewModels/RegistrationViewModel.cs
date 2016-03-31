@@ -19,7 +19,7 @@ namespace Shaolin_Check_In.ViewModels
         // private ObservableCollection<StudentRegistration> _localOnlyList;
 
         public DateTimeOffset? Date { get; set; }
-
+        public Team SearchTeam { get; set; }
         public string SearchText
         {
             get { return _searchText; }
@@ -57,35 +57,7 @@ namespace Shaolin_Check_In.ViewModels
             LocalStudentRegistrations = SCommon.StudentRegistrationList;
             //SearchDate = DateTime.Today;
         }
-        //public void SearchForStudentName(string name)
-        //{ // Search List of StudentRegistrations, for specific student name.
-        //    if (name != null)
-        //    {
-
-
-        //        var studreg = new ObservableCollection<StudentRegistration>();
-        //        if (name != "")
-        //        {
-        //            foreach (var sr in _localOnlyList)
-        //            {
-        //                if (sr.Name.ToLower().Contains(name.ToLower()))
-        //                {
-        //                    studreg.Add(sr);
-        //                }
-
-        //            }
-        //            LocalStudentRegistrations = studreg;
-
-        //        }
-        //        else 
-        //        {
-
-        //            LocalStudentRegistrations = SCommon.StudentRegistrationList;
-
-        //        }
-
-        //    }
-        //}
+        
 
         public void SearchNameInAlreadySorted(string name)
         {
@@ -142,6 +114,7 @@ namespace Shaolin_Check_In.ViewModels
                             }
                             LocalStudentRegistrations = studreg;
                             SearchNameInAlreadySorted(SearchText);
+                        SearchForTeam();
                         }
                     
                 }
@@ -159,10 +132,21 @@ namespace Shaolin_Check_In.ViewModels
 
                         }
                         LocalStudentRegistrations = studreg;
-
+                        SearchForTeam();
                     }
                 }
 
+            }
+            else if (!string.IsNullOrEmpty(SearchText) && SearchTeam!=null)
+            {
+                LocalStudentRegistrations = SCommon.StudentRegistrationList;
+                SearchNameInAlreadySorted(SearchText);
+                SearchForTeam();
+            }
+            else if (string.IsNullOrEmpty(SearchText) && SearchTeam != null)
+            {
+                LocalStudentRegistrations = SCommon.StudentRegistrationList;
+                SearchForTeam();
             }
             else if (!string.IsNullOrEmpty(SearchText))
             {
@@ -175,6 +159,30 @@ namespace Shaolin_Check_In.ViewModels
             }
         }
 
+        public void SearchForTeam()
+        {
+
+            var studreg = new ObservableCollection<StudentRegistration>();
+            if (SearchTeam != null)
+            {
+                foreach (var sr in LocalStudentRegistrations)
+                {
+                    if (sr.Team == SearchTeam.Id)
+                    {
+                        studreg.Add(sr);
+                    }
+
+                }
+                LocalStudentRegistrations = studreg;
+
+            }
+            else
+            {
+
+                LocalStudentRegistrations = LocalStudentRegistrations;
+
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -61,7 +61,7 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="0,0,10,8">
                         <CalendarDatePicker x:Name="DateChooser" HorizontalAlignment="Left" VerticalAlignment="Top" DateChanged="DatePicked"/>
-                        <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="teamDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Top" PlaceholderText="Sorter på hold" ItemsSource="{Binding SCommon.TeamList}" SelectionChanged="comboBox_SelectionChanged"/>
                     </StackPanel>
                     <SearchBox PlaceholderText="Søg efter navn" QueryText="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RequestedTheme="Dark" Margin="0" MinWidth="148" MinHeight="32" Height="36"/>
                 </StackPanel>

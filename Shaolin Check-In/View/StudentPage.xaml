@@ -34,7 +34,7 @@
             <RowDefinition Height="29*"/>
             <RowDefinition Height="77*"/>
         </Grid.RowDefinitions>
-        <Viewbox HorizontalAlignment="Left" Margin="0,0,0,0.4" Width="311">
+        <Viewbox HorizontalAlignment="Left" Margin="0,0,0,0.4" Width="311" Grid.ColumnSpan="3">
             <Grid HorizontalAlignment="Left" Margin="50,0,0,0">
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}"
