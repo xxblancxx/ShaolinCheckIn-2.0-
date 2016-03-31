@@ -39,8 +39,7 @@
             </GridView.ItemsPanel>
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding SelectTeamCommand, Mode=OneWay}" CommandParameter="{Binding SelectedItem, ElementName=GridView}"/>
-                    <core:NavigateToPageAction TargetPage="Shaolin_Check_In.View.StudentPage"/>
+                    <core:InvokeCommandAction Command="{Binding SetClubActivityCommand}" CommandParameter="{Binding SelectedItem, ElementName=GridView}"/>
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </GridView>

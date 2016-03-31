@@ -26,7 +26,7 @@ namespace Shaolin_Check_In.ViewModels
         {
             get
             {
-                _navigateCommand = new RelayCommand(ChangeViewToActivity);
+                _navigateToActivity = new RelayCommand(ChangeViewToActivity);
                 return _navigateToActivity;
             }
             set { _navigateToActivity = value; }
@@ -73,9 +73,9 @@ namespace Shaolin_Check_In.ViewModels
             { // Loads Objects from DB on startup. Sets AlreadyLoaded to true if no exceptions happen, so it only happens once automatically.
                 try
                 {
-                    //WsContext.LoadClubs();
-                    //WsContext.LoadTeams();
-                    //WsContext.LoadStudents();
+                    WsContext.LoadClubs();
+                    WsContext.LoadTeams();
+                    WsContext.LoadStudents();
                     WsContext.LoadRegistrations();
                     WsContext.LoadStudentRegistrations();
                     WsContext.LoadMessages();

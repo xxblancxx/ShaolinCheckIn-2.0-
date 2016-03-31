@@ -378,7 +378,16 @@ namespace Shaolin_Check_In.Common
         #region LoadFromDB Methods
         public async void LoadClubs()
         { // Load clubs from DB into Singleton
-            SingletonCommon.Instance.ClubList = await GetAllClubs();
+            SingletonCommon.Instance.AllClubs = await GetAllClubs();
+            var clubList = new ObservableCollection<Club>();
+            foreach (var club in SingletonCommon.Instance.AllClubs)
+            {
+                if (club.IsActive)
+                {
+                    clubList.Add(club);
+                }
+            }
+            SingletonCommon.Instance.ClubList = clubList;
         }
         public async Task LoadMessages()
         { // Load  from DB into Singleton
@@ -391,11 +400,29 @@ namespace Shaolin_Check_In.Common
         }
         public async void LoadTeams()
         { // Load teams from DB into Singleton
-            SingletonCommon.Instance.TeamList = await GetAllTeams();
+            SingletonCommon.Instance.AllTeams = await GetAllTeams();
+            var teamList = new ObservableCollection<Team>();
+            foreach (var team in SingletonCommon.Instance.AllTeams)
+            {
+                if (team.IsActive)
+                {
+                    teamList.Add(team);
+                }
+            }
+            SingletonCommon.Instance.TeamList = teamList;
         }
         public async void LoadStudents()
         { // Load students from DB into Singleton
-            SingletonCommon.Instance.StudentList = await GetAllStudents();
+            SingletonCommon.Instance.AllStudents = await GetAllStudents();
+            var studentList = new ObservableCollection<Student>();
+            foreach (var student in SingletonCommon.Instance.AllStudents)
+            {
+                if (student.IsActive)
+                {
+                    studentList.Add(student);
+                }
+            }
+            SingletonCommon.Instance.StudentList = studentList;
         }
 
         public async void LoadRegistrations()
