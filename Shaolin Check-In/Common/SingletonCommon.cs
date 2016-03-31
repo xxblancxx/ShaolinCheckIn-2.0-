@@ -23,13 +23,29 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<Registration> _registrationList;
         private ObservableCollection<StudentRegistration> _displayedStudentRegistrations;
         private string _frontpageMessage;
+        private ObservableCollection<Student> _allStudents;
 
         public Type DesiredFrame { get; set; }
 
         public List<UserLogin> UserLoginList { get; set; }
         public ObservableCollection<Club> AllClubs { get; set; }
         public ObservableCollection<Team> AllTeams { get; set; }
-        public ObservableCollection<Student> AllStudents { get; set; }
+
+        public ObservableCollection<Student> AllStudents
+        {
+            get
+            {
+
+
+                var returnList = new ObservableCollection<Student>();
+                foreach (var student in _allStudents.OrderBy(t => t.Name).ToList())
+                {
+                    returnList.Add(student);
+                }
+                return returnList;
+            }
+            set { _allStudents = value; }
+        }
 
         public ObservableCollection<Message> MessageList { get; set; }
 

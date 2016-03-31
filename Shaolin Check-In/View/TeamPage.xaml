@@ -27,7 +27,7 @@
                 </Interactivity:Interaction.Behaviors>
             </Button>
             <TextBlock x:Name="pageTitle" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="50,0,30,40" RequestedTheme="Dark" Text="Sæt aktivitet for klub"/>
+				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="50,0,30,40" RequestedTheme="Dark" Text="Vælg Hold"/>
         </StackPanel>
         <GridView x:Name="GridView" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="23"  Header="Vælg Hold" RequestedTheme="Dark" ItemsSource="{Binding TeamList}" ItemTemplate="{StaticResource ClubAndTeamTemplate}">
             <GridView.ItemsPanel>

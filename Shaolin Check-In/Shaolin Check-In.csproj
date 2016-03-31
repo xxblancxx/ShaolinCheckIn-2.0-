@@ -158,8 +158,14 @@
     <Compile Include="View\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StudentActivityPage.xaml.cs">
+      <DependentUpon>StudentActivityPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StudentPage.xaml.cs">
       <DependentUpon>StudentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeamActivityPage.xaml.cs">
+      <DependentUpon>TeamActivityPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TeamPage.xaml.cs">
       <DependentUpon>TeamPage.xaml</DependentUpon>
@@ -228,7 +234,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\StudentActivityPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\StudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeamActivityPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

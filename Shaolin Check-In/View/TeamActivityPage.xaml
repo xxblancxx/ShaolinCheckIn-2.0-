@@ -1,0 +1,48 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Shaolin_Check_In.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:ViewModels="using:Shaolin_Check_In.ViewModels"
+    x:Class="Shaolin_Check_In.View.TeamActivityPage"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModels:ActivityViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="#FF191919">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="53*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}"
+				VerticalAlignment="Center" Margin="20,0,0,0" RequestedTheme="Dark" >
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Click">
+                        <core:NavigateToPageAction TargetPage="Shaolin_Check_In.MainPage"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </Button>
+            <TextBlock x:Name="pageTitle" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="50,0,30,40" RequestedTheme="Dark" Text="Sæt aktivitet for hold"/>
+        </StackPanel>
+        <GridView x:Name="GridView" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="23"  Header="Vælg Hold" RequestedTheme="Dark" ItemsSource="{Binding SCommon.AllTeams}" ItemTemplate="{StaticResource ClubAndTeamTemplate}">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VariableSizedWrapGrid  Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding SetTeamActivityCommand}" CommandParameter="{Binding SelectedItem, ElementName=GridView}"/>
+                    <core:ChangePropertyAction PropertyName="SelectedItem"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </GridView>
+    </Grid>
+</Page>
