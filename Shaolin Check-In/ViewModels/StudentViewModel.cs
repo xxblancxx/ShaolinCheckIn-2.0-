@@ -124,35 +124,34 @@ namespace Shaolin_Check_In.ViewModels
 
         private async void ClickPictureButton(IUICommand command)
         {
-            try
-            {
-                byte[] returnImage = null;
+           byte[] returnImage = null;
                 if (SelectedStudent != null)
                 {
 
                     var pic = await PictureHandler.PictureTime();
-                    using (IRandomAccessStreamWithContentType stream = await pic.OpenReadAsync())
+                    if (pic != null)
                     {
-                        returnImage = new byte[stream.Size];
-
-                        using (DataReader reader = new DataReader(stream))
-
+                        using (IRandomAccessStreamWithContentType stream = await pic.OpenReadAsync())
                         {
-                            await reader.LoadAsync((uint)stream.Size);
+                            returnImage = new byte[stream.Size];
 
-                            reader.ReadBytes(returnImage);
+                            using (DataReader reader = new DataReader(stream))
+
+                            {
+                                await reader.LoadAsync((uint)stream.Size);
+
+                                reader.ReadBytes(returnImage);
+                            }
                         }
+                        SelectedStudent.Image = returnImage;
+                        await WsContext.UpdateStudent(SelectedStudent);
+                        WsContext.LoadStudents();
+
                     }
-                    SelectedStudent.Image = returnImage;
-                    await WsContext.UpdateStudent(SelectedStudent);
-                    WsContext.LoadStudents();
 
                 }
-            }
-            catch (Exception)
-            {
-
-            }
+            
+           
         }
         private void ClickcancelButton(IUICommand command)
         {

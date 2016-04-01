@@ -38,6 +38,7 @@ namespace Shaolin_Check_In.ViewModels
             else if (Name != null || Name != "")
             {
                 Club club = new Club(Name);
+                club.IsActive = true;
                 await WsContext.CreateClub(club);
                 frame.Navigate(typeof(CreateNewPage));
                 WsContext.LoadClubs();

@@ -38,6 +38,7 @@ namespace Shaolin_Check_In.ViewModels
             else if (!club.Equals(null))
             {
                 Team team = new Team(Name, club.Id);
+                team.IsActive = true;
               await  WsContext.CreateTeam(team);
                 WsContext.LoadTeams();
                 frame.Navigate(typeof(CreateNewPage));

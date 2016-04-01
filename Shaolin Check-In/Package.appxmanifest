@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="eebd55cd-9e57-4c73-843c-66eed3be5650" Publisher="CN=martin" Version="1.0.1.0" />
+  <Identity Name="eebd55cd-9e57-4c73-843c-66eed3be5650" Publisher="CN=martin" Version="2.0.5.0" />
   <mp:PhoneIdentity PhoneProductId="eebd55cd-9e57-4c73-843c-66eed3be5650" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Shaolin Check-In</DisplayName>
