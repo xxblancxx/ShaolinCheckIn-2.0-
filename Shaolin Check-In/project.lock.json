@@ -1612,6 +1612,14 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "VisibilityControl/1.0.1": {
+        "compile": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -3314,6 +3322,14 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "VisibilityControl/1.0.1": {
+        "compile": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
@@ -4987,6 +5003,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "VisibilityControl/1.0.1": {
+        "compile": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
         }
       }
     },
@@ -6695,6 +6719,14 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "VisibilityControl/1.0.1": {
+        "compile": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
@@ -8368,6 +8400,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "VisibilityControl/1.0.1": {
+        "compile": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
         }
       }
     },
@@ -10076,6 +10116,14 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "VisibilityControl/1.0.1": {
+        "compile": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
@@ -11749,6 +11797,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "VisibilityControl/1.0.1": {
+        "compile": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/winrt45/VisibilityControlLibrary.dll": {}
         }
       }
     }
@@ -15375,6 +15431,19 @@
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll",
         "System.Xml.XmlSerializer.nuspec"
       ]
+    },
+    "VisibilityControl/1.0.1": {
+      "sha512": "cM0Oh+bV3VXEbDTrji6N1tBU0MOBKeIfMPTuexphH9Jijhy0Em6Z8yjMJUVQEu/CAfKRtdL3oufIgaBO31rJSQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/winrt45/VisibilityControlLibrary.dll",
+        "lib/winrt45/VisibilityControlLibrary.pri",
+        "lib/winrt45/VisibilityControlLibrary/Themes/Generic.xaml",
+        "package/services/metadata/core-properties/714af7c5a0b64eb6bdb3c01899c058b8.psmdcp",
+        "VisibilityControl.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -15384,7 +15453,8 @@
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
       "Microsoft.AspNet.WebApi.Client >= 5.2.3",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "Newtonsoft.Json >= 7.0.1"
+      "Newtonsoft.Json >= 7.0.1",
+      "VisibilityControl >= 1.0.1"
     ],
     "UAP,Version=v10.0": []
   }

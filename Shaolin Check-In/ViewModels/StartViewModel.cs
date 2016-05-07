@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
@@ -21,6 +22,7 @@ namespace Shaolin_Check_In.ViewModels
         private RelayCommand _navigateCommand;
         private RelayCommand _navigateToCreateCommand;
         private RelayCommand _navigateToActivity;
+        private bool _isLoading;
 
         public RelayCommand NavigateToActivityCommand
         {
@@ -32,6 +34,7 @@ namespace Shaolin_Check_In.ViewModels
             set { _navigateToActivity = value; }
         }
 
+      
         public RelayCommand NavigateToMessagesCommand
         {
             get
@@ -67,19 +70,25 @@ namespace Shaolin_Check_In.ViewModels
             SCommon.SelectedClub = c;
         }
 
-        public void GetAllFromDatabase()
+      
+        public async void GetAllFromDatabase()
         {
             if (!SCommon.AlreadyLoaded)
             { // Loads Objects from DB on startup. Sets AlreadyLoaded to true if no exceptions happen, so it only happens once automatically.
                 try
                 {
-                    WsContext.LoadClubs();
-                    WsContext.LoadTeams();
-                    WsContext.LoadStudents();
-                    WsContext.LoadRegistrations();
-                    WsContext.LoadStudentRegistrations();
-                    WsContext.LoadMessages();
-                    WsContext.LoadUserLogins();
+                    SCommon.loadingVis = Visibility.Visible;
+                    SCommon.showDataVis = Visibility.Collapsed;
+                    Task t = WsContext.LoadTeams();
+                    Task t1 = WsContext.LoadStudents();
+                    Task t2 = WsContext.LoadRegistrations();
+                    Task t3 = WsContext.LoadStudentRegistrations();
+                    Task t4 = WsContext.LoadMessages();
+                    Task t5 = WsContext.LoadUserLogins();
+                    await Task.WhenAll(t, t1, t2, t3, t4, t5);
+                    await WsContext.LoadClubs();
+                   SCommon.loadingVis = Visibility.Collapsed;
+                    SCommon.showDataVis = Visibility.Visible;
                     SCommon.AlreadyLoaded = true;
                 }
                 catch (HttpRequestException)

@@ -114,8 +114,16 @@ namespace Shaolin_Check_In.ViewModels
             }
             else
             {
+                
                 MsgDialog = new MessageDialog("Du er allerede registreret, god træning!",
                     "Hej " + SelectedStudent.Name);
+
+                if (SelectedStudent.Image == null)
+                {
+                    MsgDialog.Commands.Add(new UICommand("Tilføj Billede", ClickPictureButton));
+                }
+                MsgDialog.Commands.Add(new UICommand("Ok"));
+
                 await MsgDialog.ShowAsync();
             }
 

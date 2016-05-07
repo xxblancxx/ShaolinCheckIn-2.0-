@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Shaolin_Check_In.Common
@@ -24,12 +25,34 @@ namespace Shaolin_Check_In.Common
         private ObservableCollection<StudentRegistration> _displayedStudentRegistrations;
         private string _frontpageMessage;
         private ObservableCollection<Student> _allStudents;
+        private Visibility _loadingVis;
+        private Visibility _showDataVis;
 
         public Type DesiredFrame { get; set; }
 
         public List<UserLogin> UserLoginList { get; set; }
         public ObservableCollection<Club> AllClubs { get; set; }
         public ObservableCollection<Team> AllTeams { get; set; }
+
+        public Visibility loadingVis
+        {
+            get { return _loadingVis; }
+            set
+            {
+                _loadingVis = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility showDataVis
+        {
+            get { return _showDataVis; }
+            set
+            {
+                _showDataVis = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Student> AllStudents
         {

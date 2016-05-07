@@ -376,7 +376,7 @@ namespace Shaolin_Check_In.Common
         }
 
         #region LoadFromDB Methods
-        public async void LoadClubs()
+        public async Task LoadClubs()
         { // Load clubs from DB into Singleton
             SingletonCommon.Instance.AllClubs = await GetAllClubs();
             var clubList = new ObservableCollection<Club>();
@@ -394,11 +394,11 @@ namespace Shaolin_Check_In.Common
             SingletonCommon.Instance.MessageList = await GetAllMessages();
             SingletonCommon.Instance.SetFrontpageMessage();
         }
-        public async void LoadUserLogins()
+        public async Task LoadUserLogins()
         { // Load  from DB into Singleton
             SingletonCommon.Instance.UserLoginList = await GetAllUserLogins();
         }
-        public async void LoadTeams()
+        public async Task LoadTeams()
         { // Load teams from DB into Singleton
             SingletonCommon.Instance.AllTeams = await GetAllTeams();
             var teamList = new ObservableCollection<Team>();
@@ -411,7 +411,7 @@ namespace Shaolin_Check_In.Common
             }
             SingletonCommon.Instance.TeamList = teamList;
         }
-        public async void LoadStudents()
+        public async Task LoadStudents()
         { // Load students from DB into Singleton
             SingletonCommon.Instance.AllStudents = await GetAllStudents();
             var studentList = new ObservableCollection<Student>();
@@ -425,11 +425,11 @@ namespace Shaolin_Check_In.Common
             SingletonCommon.Instance.StudentList = studentList;
         }
 
-        public async void LoadRegistrations()
+        public async Task LoadRegistrations()
         { // Load all Registrations from DB into Singleton
             SingletonCommon.Instance.RegistrationList = await GetAllRegistrations();
         }
-        public async void LoadStudentRegistrations()
+        public async Task LoadStudentRegistrations()
         { // Load User registrations from View, into singleton.
             SingletonCommon.Instance.StudentRegistrationList = await GetAllStudentRegistrations();
         }
