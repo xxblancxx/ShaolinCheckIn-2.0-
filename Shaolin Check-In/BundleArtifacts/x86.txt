@@ -1,2 +1,2 @@
-MainPackage=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\bin\x86\Release\Shaolin Check-In_2.0.5.0_x86.appx
-SymbolPackage=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\AppPackages\Shaolin Check-In_2.0.5.0_Test\Shaolin Check-In_2.0.5.0_x86.appxsym
+MainPackage=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\bin\x86\Release\Shaolin Check-In_2.2.6.0_x86.appx
+SymbolPackage=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\AppPackages\Shaolin Check-In_2.2.6.0_Test\Shaolin Check-In_2.2.6.0_x86.appxsym

@@ -1,4 +1,4 @@
-MainPackage=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\bin\ARM\Release\Shaolin Check-In_2.0.5.0_ARM.appx
-SymbolPackage=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\AppPackages\Shaolin Check-In_2.0.5.0_Test\Shaolin Check-In_2.0.5.0_ARM.appxsym
-ResourcePack=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\bin\ARM\Release\Shaolin Check-In_2.0.5.0_scale-100.appx
-ResourcePack=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\bin\ARM\Release\Shaolin Check-In_2.0.5.0_scale-400.appx
+MainPackage=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\bin\ARM\Release\Shaolin Check-In_2.2.6.0_ARM.appx
+SymbolPackage=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\AppPackages\Shaolin Check-In_2.2.6.0_Test\Shaolin Check-In_2.2.6.0_ARM.appxsym
+ResourcePack=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\bin\ARM\Release\Shaolin Check-In_2.2.6.0_scale-100.appx
+ResourcePack=C:\Users\martin\Documents\Visual Studio 2015\Projects\ShaolinCheckIn-2.0-\Shaolin Check-In\bin\ARM\Release\Shaolin Check-In_2.2.6.0_scale-400.appx
